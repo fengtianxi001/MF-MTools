@@ -10,3 +10,5 @@
 - 自动扫描packahe.json中的script脚本,支持脚本的一键启动
 
 ## 截图
+![show](https://raw.githubusercontent.com/fengtianxi001/Project-Management-Tools/master/screenshots/Snipaste_2021-08-12_02-04-23.png)
+![show](https://raw.githubusercontent.com/fengtianxi001/Project-Management-Tools/master/screenshots/Snipaste_2021-08-12_02-48-27.png)
