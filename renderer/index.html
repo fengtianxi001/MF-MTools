@@ -5,49 +5,17 @@
 	<meta charset="UTF-8" />
 	<title>tools</title>
 	<link rel="stylesheet" href="../styles/index.css" />
-	<link rel="stylesheet" href="https://at.alicdn.com/t/font_2733199_rr92z4kdcrj.css" />
 	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" />
+	<link rel="stylesheet" href="https://at.alicdn.com/t/font_2733199_krljsc8lcn.css" />
 </head>
 
 <body>
 	<div id="app">
-		<div v-if="isEmpty" class="emptyPage">
-			<img src="../assets/images/empty.png" alt="empty">
-			<h4>暂无托管项目,请拖拽文件夹至此区域</h4>
-		</div>
-		<ul class="folders" v-else v-cloak>
-			<li class="folder" v-for="{path,name,scripts} in folders" :key="path">
-				<div class="folder-info">
-					<img src="../assets/images/file.png" />
-					<div>
-						<p>{{name}}</p>
-						<h6>{{path}}</h6>
-					</div>
-				</div>
-				<ul class="folder-operate">
-					<template v-for="{tips,icon,event} in operates">
-						<el-tooltip :key="event" effect="dark" :content="tips" placement="top" :hide-after="900">
-							<i :class="'iconfont '+ icon" @click="dispatch(event,path)"></i>
-						</el-tooltip>
-					</template>
-
-					<el-dropdown size="small" trigger="click" placement="bottom" :hide-after="900">
-						<i class="iconfont icon-moreread"></i>
-						<el-dropdown-menu slot="dropdown">
-							<el-dropdown-item v-for="script in scripts" :key="script"
-											  @click.native="runScript(path,script)">
-								<i class="el-icon-menu"></i>{{script}}
-							</el-dropdown-item>
-						</el-dropdown-menu>
-					</el-dropdown>
-				</ul>
-			</li>
-		</ul>
-
+		<router-view></router-view>
 	</div>
 </body>
-<script src="../scripts/vue.min.js"></script>
-<script src="../scripts/vue-router.js"></script>
+<script src="../plugins/vue.min.js"></script>
+<script src="../plugins/vue-router.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script src="../scripts/index.js"></script>
 

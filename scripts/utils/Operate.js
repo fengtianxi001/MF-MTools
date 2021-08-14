@@ -16,20 +16,6 @@ class Operate {
 		}, [])
 		addProject(projects)
 	}
-	//在vscode中打开
-	static openInVscode(_path) {
-		//todo 建立vscode软链接
-		exec(`code ${_path}`)
-	}
-	static runInstall(_path) {
-		exec(`cd ${_path} & start npm install`)
-	}
-	static runExplorer(_path) {
-		exec(`explorer /root,${_path}`)
-	}
-	static runScript(_path, scriptName) {
-		const str = `cd ${_path} & start npm run ${scriptName}`
-		exec(str)
-	}
+
 }
 module.exports = Operate

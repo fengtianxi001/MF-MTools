@@ -6,9 +6,26 @@ function package(_path) {
 		path: _path,
 		name: path.basename(_path),
 		scripts: fetchScripts(_path),
+		type: fetchType(_path),
 	}
 }
-
+function fetchType(_path) {
+	const jsonPath = path.resolve(_path, 'package.json')
+	var options = { encoding: 'utf-8' }
+	const file = fs.readFileSync(jsonPath, options)
+	const devDependencies = JSON.parse(file).devDependencies
+	let type = null
+	for (let key in devDependencies) {
+		if (key.indexOf('vue') >= 0) {
+			type = 'vue'
+			break
+		} else if (key.indexOf('react') >= 0) {
+			type = 'react'
+			break
+		}
+	}
+	return  type || "js"
+}
 function checkDir(dir) {
 	//判断文件夹是否是项目文件夹 package.json
 	return fs.existsSync(path.resolve(dir, 'package.json'))
@@ -50,6 +67,12 @@ function fetchScripts(_path) {
 		return prev
 	}, [])
 }
+
+function hasNodeModule(pwd) {
+	return fs.existsSync(path.resolve(pwd, 'node_modules'))
+}
+
 module.exports = {
 	loopDir,
+	hasNodeModule,
 }

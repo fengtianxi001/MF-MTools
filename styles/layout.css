@@ -1,0 +1,9 @@
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.container-view{
+    width: calc(100% - 141px);
+    height: 100%;
+}
