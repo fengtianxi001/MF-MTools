@@ -15,5 +15,4 @@
 `ctrl + space` 快速激活和隐藏
 ## 截图
 ![show](https://raw.githubusercontent.com/fengtianxi001/Project-Management-Tools/master/screenshots/1.png)
-![show](https://raw.githubusercontent.com/fengtianxi001/Project-Management-Tools/master/screenshots/2.png)
 
