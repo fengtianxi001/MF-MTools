@@ -7,8 +7,12 @@
 - 支持一键使用vscode打开项目
 - 支持npm包一键install
 - 支持一键打开文件夹
+- 支持项目类型识别
+- 支持文件夹名称搜索
 - 自动扫描packahe.json中的script脚本,支持脚本的一键启动
 
+## 快捷键
+`ctrl + space` 快速激活和隐藏
 ## 截图
 ![show](https://raw.githubusercontent.com/fengtianxi001/Project-Management-Tools/master/screenshots/Snipaste_2021-08-12_02-04-23.png)
-![show](https://raw.githubusercontent.com/fengtianxi001/Project-Management-Tools/master/screenshots/Snipaste_2021-08-12_02-48-27.png)
+
