@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "nodemon --watch ./scripts/index.js --exec electron . ",
 		"dev": "electron . ",
-		"package": "electron-packager . img2gif --platform=win32 --arch=x64 --icon=favicon.ico --out=./out --asar --app-version=0.0.1 --overwrite --ignore=node_modules"
+		"package": "electron-packager . mtools --platform=win32 --arch=x64 --icon=favicon.ico --out=./out --asar --app-version=0.0.1 --overwrite --ignore=node_modules"
 	},
 	"repository": "https://github.com/electron/electron-quick-start",
 	"keywords": [

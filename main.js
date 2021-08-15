@@ -50,6 +50,7 @@ app.on('ready', () => {
 		if (isShow) {
 			mainWindow.hide()
 			isShow = false
+			setTray(mainWindow)
 		} else {
 			mainWindow.show()
 			isShow = true
@@ -67,7 +68,7 @@ function setTray(mainWindow) {
 		},
 	]
 	// 当前目录下的app.ico图标
-	let iconPath = path.join(__dirname, 'demo.png')
+	let iconPath = path.join(__dirname, 'favicon.png')
 	appTray = new Tray(iconPath)
 	// 图标的上下文菜单
 	const contextMenu = Menu.buildFromTemplate(trayMenuTemplate)
