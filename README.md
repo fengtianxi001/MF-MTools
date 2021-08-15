@@ -11,7 +11,8 @@
 - 支持项目类型识别
 - 支持文件夹名称搜索
 - 自动扫描packahe.json中的script脚本,支持脚本的一键启动
-
+## 下载
+点击此处下载 [应用](https://github.com/fengtianxi001/MTools/releases/download/V0.0.1/MTools.zip)
 ## 快捷键
 `ctrl + space` 快速激活和隐藏
 ## 截图
