@@ -19,7 +19,7 @@ app.on('ready', () => {
 	const mainWindow = new BrowserWindow({
 		width: 900,
 		height: 505,
-		frame: false,
+		// frame: false,
 		resizable: false,
 		webPreferences: {
 			nodeIntegration: true,
@@ -27,12 +27,12 @@ app.on('ready', () => {
 			enableRemoteModule: true,
 		},
 	})
-
+	setTray(mainWindow)
 	mainWindow.loadFile('./renderer/index.html')
 	mainWindow.on('minimize', function (event) {
 		event.preventDefault()
 		mainWindow.hide()
-		setTray(mainWindow)
+		
 		isShow = false
 	})
 	if (!gotTheLock) {
@@ -49,8 +49,8 @@ app.on('ready', () => {
 	globalShortcut.register('Space+Ctrl', () => {
 		if (isShow) {
 			mainWindow.hide()
+			
 			isShow = false
-			setTray(mainWindow)
 		} else {
 			mainWindow.show()
 			isShow = true
@@ -73,11 +73,11 @@ function setTray(mainWindow) {
 	// 图标的上下文菜单
 	const contextMenu = Menu.buildFromTemplate(trayMenuTemplate)
 	mainWindow.hide()
-	appTray.setToolTip('never forget')
+	appTray.setToolTip('mtools')
 	appTray.setContextMenu(contextMenu)
 	appTray.on('click', function () {
 		mainWindow.show()
-		appTray.destroy()
+		// appTray.destroy()
 		isShow = true
 	})
 }
