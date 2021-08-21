@@ -10,7 +10,6 @@
 			class="table-icon"
 			@click.native="install"
 		></icon>
-		<icon icon="#icon-info" class="table-icon"></icon>
 		<icon
 			icon="#icon-remove"
 			class="table-icon"
@@ -107,8 +106,8 @@ export default {
 			})
 				.then(() => {
 					const { dirpath } = this
-					
-					console.log(del("project",dirpath));
+
+					console.log(del('project', dirpath))
 					// const where = { name: path.basename(dirpath) }
 					// // const res = delProject(where)
 					// console.log(res)

@@ -44,12 +44,15 @@ export default {
 		push() {
 			const { path } = this
 			const options = { path, detached: true }
-			exec('TortoiseGitProc /command:commit /logmsg:update', options)
+			exec(
+				`TortoiseGitProc /command:commit /path:${path} /logmsg:update`,
+				options
+			)
 		},
 		pull() {
 			const { path } = this
 			const options = { path, detached: true }
-			exec('TortoiseGitProc /command:fetch', options)
+			exec(`TortoiseGitProc /command:fetch /path:${path}`, options)
 		},
 	},
 }

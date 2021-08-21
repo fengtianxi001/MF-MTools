@@ -61,6 +61,10 @@ export default {
 </script>
 <style lang="scss">
 .table-row {
+	cursor: pointer;
+	border-top: 1px solid transparent;
+	border-left: 1px solid transparent;
+	border-right: 1px solid transparent;
 	& > li {
 		white-space: nowrap;
 		overflow: hidden;

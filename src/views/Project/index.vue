@@ -8,12 +8,12 @@
 /*eslint-disable*/
 import MTable from './components/table.vue'
 import { loopDir } from '@/utils'
-import { get,insert } from "../../utils/datastore";
+import { get, insert } from '../../utils/datastore'
 import eventbus from '@/api/eventbus'
 export default {
 	data() {
 		return {
-			projects: get("project")
+			projects: get('project'),
 		}
 	},
 	components: {
@@ -39,7 +39,7 @@ export default {
 			} else {
 				this.$message.success(`成功添加${projects.length}个项目文件`)
 				console.log('projects', projects)
-				this.projects = insert("project",projects)
+				this.projects = insert('project', projects)
 			}
 		},
 	},
@@ -51,7 +51,7 @@ export default {
 			e.stopPropagation()
 		})
 		eventbus.$on('updateProject', () => {
-			this.projects = get("project")
+			this.projects = get('project')
 		})
 	},
 }
