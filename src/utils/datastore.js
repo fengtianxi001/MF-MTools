@@ -1,13 +1,45 @@
 /*eslint-disable*/
-import DataStore from 'lowdb'
-import FileSync from 'lowdb/adapters/FileSync'
-import path from 'path'
+// 初始化数据库
+const fs = require('fs')
+const path = require('path')
 
-const database = FileName => {
-	//  将 mydb 这个方法挂载在Vue的原型上,FileName是json文件的名字
-	const NamePath = path.join(__static, `/json/${FileName}.json`) // 拿到传入的json的存储路径;该json文件存在public文件夹下的json文件夹下。
-	const adpets = new FileSync(NamePath) // 初始化lowdb读写的json文件名以及存储路径
-	const data = DataStore(adpets) // lowdb接管该文件
-	return data
+const dataPath = path.resolve('./data.json')
+
+const rawData = {
+	project: [],
 }
-export default database
+//判断是否存在文件
+if (!fs.existsSync(dataPath)) {
+	fs.writeFileSync(dataPath, JSON.stringify(rawData))
+}
+
+export const get = dataname => {
+	const string_data = fs.readFileSync(dataPath, {
+		encoding: 'utf-8',
+	})
+	// console.log(string_data)
+	const object_data = JSON.parse(string_data)
+	if (dataname) return object_data[dataname]
+	return object_data
+}
+
+export const insert = (dataname = 'project', content) => {
+	const all = get()
+	const prev = all[dataname]
+	if (Array.isArray(content)) {
+		prev.push(...content)
+	} else {
+		prev.push(content)
+	}
+	fs.writeFileSync(dataPath, JSON.stringify(all))
+	return prev
+}
+
+export const del = (dataname = 'project', projectPath) => {
+	const all = get()
+	const prev = all[dataname]
+	const index = prev.findIndex(folder => folder.path == projectPath)
+	prev.splice(index, 1)
+	fs.writeFileSync(dataPath, JSON.stringify(all))
+	return prev
+}

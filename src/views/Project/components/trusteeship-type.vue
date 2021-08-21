@@ -38,15 +38,19 @@ export default {
 	name: 'trusteeship-type',
 	props: {
 		type: String,
-		path: String
+		path: String,
 	},
 	methods: {
 		push() {
-			const {path} = this
+			const { path } = this
 			const options = { path, detached: true }
-			exec("TortoiseGitProc /command:commit /logmsg:update", options)
+			exec('TortoiseGitProc /command:commit /logmsg:update', options)
 		},
-		pusll() {},
+		pull() {
+			const { path } = this
+			const options = { path, detached: true }
+			exec('TortoiseGitProc /command:fetch', options)
+		},
 	},
 }
 </script>

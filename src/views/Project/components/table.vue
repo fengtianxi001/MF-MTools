@@ -40,7 +40,7 @@ export default {
 	},
 	components: {
 		tableBody: () => import('./table-body.vue'),
-	},
+	}
 }
 </script>
 <style lang="scss">

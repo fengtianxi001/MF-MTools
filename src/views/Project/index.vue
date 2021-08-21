@@ -8,11 +8,12 @@
 /*eslint-disable*/
 import MTable from './components/table.vue'
 import { loopDir } from '@/utils'
-import { getProject, insertProject } from '@/utils/dataOperate/project'
+import { get,insert } from "../../utils/datastore";
+import eventbus from '@/api/eventbus'
 export default {
 	data() {
 		return {
-			projects: getProject(),
+			projects: get("project")
 		}
 	},
 	components: {
@@ -38,7 +39,7 @@ export default {
 			} else {
 				this.$message.success(`成功添加${projects.length}个项目文件`)
 				console.log('projects', projects)
-				this.projects = insertProject(projects)
+				this.projects = insert("project",projects)
 			}
 		},
 	},
@@ -48,6 +49,9 @@ export default {
 		project.addEventListener('dragover', e => {
 			e.preventDefault()
 			e.stopPropagation()
+		})
+		eventbus.$on('updateProject', () => {
+			this.projects = get("project")
 		})
 	},
 }

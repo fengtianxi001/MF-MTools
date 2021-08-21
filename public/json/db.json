@@ -1,20 +1,6 @@
 {
   "projects": [
     {
-      "path": "C:\\Users\\fengtianxi001\\Desktop\\MTools",
-      "name": "MTools",
-      "scripts": [
-        "web:serve",
-        "web:build",
-        "build",
-        "dev"
-      ],
-      "type": "vue",
-      "addtime": 1629541570209,
-      "birthtime": 1629529168145,
-      "trusteeship": "git"
-    },
-    {
       "path": "C:\\Users\\fengtianxi001\\Desktop\\cloud-doc",
       "name": "cloud-doc",
       "scripts": [
@@ -24,7 +10,7 @@
         "eject"
       ],
       "type": "js",
-      "addtime": 1629543253190,
+      "addtime": 1629548425935,
       "birthtime": 1629214595274,
       "trusteeship": "git"
     },
@@ -35,7 +21,7 @@
         "test"
       ],
       "type": "js",
-      "addtime": 1629544003259,
+      "addtime": 1629548427489,
       "birthtime": 1629543985597,
       "trusteeship": "local"
     }

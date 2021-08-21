@@ -30,7 +30,7 @@
 			<li :style="calcStyle(4)" class="table-row-operate">
 				<operateComponents
 					:scripts="scripts"
-					:path="path"
+					:dirpath="path"
 				></operateComponents>
 			</li>
 		</ul>
