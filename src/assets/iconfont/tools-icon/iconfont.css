@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2733199 */
-  src: url('iconfont.woff2?t=1629305237663') format('woff2'),
-       url('iconfont.woff?t=1629305237663') format('woff'),
-       url('iconfont.ttf?t=1629305237663') format('truetype');
+  src: url('iconfont.woff2?t=1629539823507') format('woff2'),
+       url('iconfont.woff?t=1629539823507') format('woff'),
+       url('iconfont.ttf?t=1629539823507') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,42 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-xiazai1:before {
+  content: "\e67b";
+}
+
+.icon-xiazai6:before {
+  content: "\e67c";
+}
+
+.icon-shangchuan1:before {
+  content: "\e68f";
+}
+
+.icon-shangchuan5:before {
+  content: "\e690";
+}
+
+.icon-shangchuan:before {
+  content: "\e63a";
+}
+
+.icon-xiazai:before {
+  content: "\e63b";
+}
+
+.icon-subscript:before {
+  content: "\e641";
+}
+
+.icon-info:before {
+  content: "\e6f5";
+}
+
+.icon-more:before {
+  content: "\e639";
 }
 
 .icon-setting-full:before {
@@ -75,10 +111,6 @@
 
 .icon-remove:before {
   content: "\e62e";
-}
-
-.icon-more:before {
-  content: "\e625";
 }
 
 .icon-run:before {

@@ -1,7 +1,7 @@
 <template>
 	<div class="table-body">
 		<ul
-			v-for="{ name, path, type, scripts } in data"
+			v-for="{ name, path, type, scripts, trusteeship } in data"
 			:key="path"
 			class="table-row"
 		>
@@ -9,38 +9,29 @@
 				<icon icon="#icon-folder" class="table-icon"></icon>
 				<span>{{ name }}</span>
 			</li>
-			<li :style="calcStyle(1)">{{ path }}</li>
-			<li :style="calcStyle(2)" class="table-row-type">
+
+			<li :style="calcStyle(1)" style="cursor: pointer">
+				{{ path }}
+			</li>
+			<li
+				:style="calcStyle(2)"
+				class="table-row-type"
+				style="display:flex;justify-content: center"
+			>
 				<i :class="type"></i>
 				<span>{{ type }}</span>
 			</li>
-			<li :style="calcStyle(3)" class="table-row-operate">
-				<icon icon="#icon-vscode" class="table-icon"></icon>
-				<icon icon="#icon-install" class="table-icon"></icon>
-				<icon icon="#icon-folder" class="table-icon"></icon>
-				<icon icon="#icon-remove" class="table-icon"></icon>
-				<el-dropdown
-					size="small"
-					trigger="click"
-					placement="bottom-end"
-					:hide-after="900"
-				>
-					<span>
-						<icon icon="#icon-more" class="table-icon-more"></icon>
-					</span>
-					<el-dropdown-menu slot="dropdown">
-						<el-dropdown-item
-							v-for="script in scripts"
-							:key="script"
-							@click.native="handleScript(script)"
-						>
-							<icon icon="#icon-run" class="table-icon"></icon>
-							<span style="position: relative;top:-2px;left:-2px">
-								{{ script }}
-							</span>
-						</el-dropdown-item>
-					</el-dropdown-menu>
-				</el-dropdown>
+			<li :style="calcStyle(3)" class="table-row-type">
+				<trusteeshipType
+					:type="trusteeship"
+					:path="path"
+				></trusteeshipType>
+			</li>
+			<li :style="calcStyle(4)" class="table-row-operate">
+				<operateComponents
+					:scripts="scripts"
+					:path="path"
+				></operateComponents>
 			</li>
 		</ul>
 	</div>
@@ -61,12 +52,19 @@ export default {
 				textAlign: align,
 			}
 		},
-		handleScript(command) {
-			console.log(command)
-		},
+	},
+	components: {
+		trusteeshipType: () => import('./trusteeship-type.vue'),
+		operateComponents: () => import('./operate-components.vue'),
 	},
 }
 </script>
 <style lang="scss">
-
+.table-row {
+	& > li {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
 </style>

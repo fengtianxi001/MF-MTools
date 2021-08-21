@@ -22,9 +22,10 @@ export default {
 		return {
 			tableHeader: [
 				{ name: '项目名称', width: '20%', align: 'left' },
-				{ name: '项目路径', width: '40%', align: 'left' },
-				{ name: '项目类型', width: '10%', align: 'left' },
-				{ name: '操作', width: '30%', align: 'center' },
+				{ name: '项目路径', width: '35%', align: 'left' },
+				{ name: '项目类型', width: '10%', align: 'center' },
+				{ name: '托管类型', width: '10%', align: 'center' },
+				{ name: '操作', width: '25%', align: 'center' },
 			],
 		}
 	},
@@ -54,7 +55,7 @@ export default {
 		border-radius: 4px;
 		color: #fff;
 		font-size: 12px;
-		margin-bottom: 10px;
+		margin-bottom: 4px;
 		display: flex;
 		align-items: center;
 		li {

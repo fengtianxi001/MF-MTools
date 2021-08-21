@@ -5,13 +5,14 @@
 	</div>
 </template>
 <script>
+/*eslint-disable*/
 import MTable from './components/table.vue'
 import { loopDir } from '@/utils'
 import { getProject, insertProject } from '@/utils/dataOperate/project'
 export default {
 	data() {
 		return {
-			projects: getProject()
+			projects: getProject(),
 		}
 	},
 	components: {
@@ -36,6 +37,7 @@ export default {
 				)
 			} else {
 				this.$message.success(`成功添加${projects.length}个项目文件`)
+				console.log('projects', projects)
 				this.projects = insertProject(projects)
 			}
 		},

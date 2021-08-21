@@ -1,15 +1,18 @@
 {
   "projects": [
     {
-      "path": "C:\\Users\\fengtianxi001\\Desktop\\Mtools-vue",
-      "name": "Mtools-vue",
+      "path": "C:\\Users\\fengtianxi001\\Desktop\\MTools",
+      "name": "MTools",
       "scripts": [
         "web:serve",
         "web:build",
         "build",
         "dev"
       ],
-      "type": "vue"
+      "type": "vue",
+      "addtime": 1629541570209,
+      "birthtime": 1629529168145,
+      "trusteeship": "git"
     },
     {
       "path": "C:\\Users\\fengtianxi001\\Desktop\\cloud-doc",
@@ -20,66 +23,21 @@
         "test",
         "eject"
       ],
-      "type": "js"
+      "type": "js",
+      "addtime": 1629543253190,
+      "birthtime": 1629214595274,
+      "trusteeship": "git"
     },
     {
-      "path": "D:\\codingup\\github\\turbine_large_screen",
-      "name": "turbine_large_screen",
+      "path": "C:\\Users\\fengtianxi001\\Desktop\\test",
+      "name": "test",
       "scripts": [
-        "serve",
-        "build",
-        "lint"
+        "test"
       ],
-      "type": "vue"
-    },
-    {
-      "path": "D:\\codingup\\gogs\\components",
-      "name": "components",
-      "scripts": [
-        "serve",
-        "build",
-        "lint"
-      ],
-      "type": "vue"
-    },
-    {
-      "path": "D:\\codingup\\location\\cashier system",
-      "name": "cashier system",
-      "scripts": [
-        "serve",
-        "build",
-        "lint"
-      ],
-      "type": "vue"
-    },
-    {
-      "path": "D:\\codingup\\location\\node爬虫",
-      "name": "node爬虫",
-      "scripts": [
-        "test",
-        "instal",
-        "start"
-      ],
-      "type": "js"
-    },
-    {
-      "path": "D:\\codingup\\location\\tiles-server",
-      "name": "tiles-server",
-      "scripts": [
-        "down",
-        "serve"
-      ],
-      "type": "js"
-    },
-    {
-      "path": "D:\\codingup\\location\\myadmin",
-      "name": "myadmin",
-      "scripts": [
-        "serve",
-        "build",
-        "lint"
-      ],
-      "type": "vue"
+      "type": "js",
+      "addtime": 1629544003259,
+      "birthtime": 1629543985597,
+      "trusteeship": "local"
     }
   ]
 }

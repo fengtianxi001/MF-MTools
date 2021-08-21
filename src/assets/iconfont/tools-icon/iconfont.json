@@ -6,6 +6,69 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "14929708",
+      "name": "下载 (1)",
+      "font_class": "xiazai1",
+      "unicode": "e67b",
+      "unicode_decimal": 59003
+    },
+    {
+      "icon_id": "14929713",
+      "name": "下载 (6)",
+      "font_class": "xiazai6",
+      "unicode": "e67c",
+      "unicode_decimal": 59004
+    },
+    {
+      "icon_id": "14929824",
+      "name": "上传 (1)",
+      "font_class": "shangchuan1",
+      "unicode": "e68f",
+      "unicode_decimal": 59023
+    },
+    {
+      "icon_id": "14929833",
+      "name": "上传 (5)",
+      "font_class": "shangchuan5",
+      "unicode": "e690",
+      "unicode_decimal": 59024
+    },
+    {
+      "icon_id": "15658273",
+      "name": "上传",
+      "font_class": "shangchuan",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "15658274",
+      "name": "下载",
+      "font_class": "xiazai",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
+      "icon_id": "820449",
+      "name": "subscript",
+      "font_class": "subscript",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "1393666",
+      "name": "info",
+      "font_class": "info",
+      "unicode": "e6f5",
+      "unicode_decimal": 59125
+    },
+    {
+      "icon_id": "21754065",
+      "name": "更多",
+      "font_class": "more",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
       "icon_id": "1212286",
       "name": "设置",
       "font_class": "setting-full",
@@ -116,13 +179,6 @@
       "font_class": "remove",
       "unicode": "e62e",
       "unicode_decimal": 58926
-    },
-    {
-      "icon_id": "15169585",
-      "name": "more",
-      "font_class": "more",
-      "unicode": "e625",
-      "unicode_decimal": 58917
     },
     {
       "icon_id": "703582",

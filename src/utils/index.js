@@ -1,6 +1,5 @@
-import fs from "fs"
+import fs from 'fs'
 const path = require('path')
-
 
 //1. 检查是否带有指定字符串
 export function hasCharacter(str, arr) {
@@ -43,12 +42,27 @@ export function Number2px(param) {
 	}
 }
 
+export function _fetchTrusteeship(_path) {
+	const git_path = path.resolve(_path, '.git')
+	const svn_path = path.resolve(_path, '.svn')
+	if (fs.existsSync(git_path)) {
+		return 'git'
+	} else if (fs.existsSync(svn_path)) {
+		return 'svn'
+	} else {
+		return 'local'
+	}
+	// console.log('access', fs.existsSync(_path))
+}
 function _package(_path) {
 	return {
 		path: _path,
 		name: path.basename(_path),
 		scripts: _fetchScripts(_path),
 		type: fetchType(_path),
+		addtime: new Date().getTime(),
+		birthtime: _fetchBirthtime(_path),
+		trusteeship: _fetchTrusteeship(_path),
 	}
 }
 function _checkDir(dir) {
@@ -65,7 +79,10 @@ function _fetchScripts(_path) {
 		return prev
 	}, [])
 }
-
+function _fetchBirthtime(_path) {
+	const info = fs.statSync(_path)
+	return new Date(info.birthtime).getTime()
+}
 //3. 挑拣项目文件夹
 export function loopDir(dir, times = 1) {
 	//先判断它是不是一个项目文件,如果是直接抛出
