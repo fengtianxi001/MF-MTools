@@ -61,7 +61,7 @@ export default {
 		pull() {
 			const { path } = this
 			const options = { path, detached: true }
-			exec(`TortoiseGitProc /command:fetch /path:${path}`, options)
+			exec(`TortoiseGitProc /command:pull /path:${path}`, options)
 		},
 		push() {
 			const { path } = this
