@@ -1,11 +1,21 @@
 <template>
 	<div class="search">
-		<input type="text" placeholder="搜索项目" />
+		<input type="text" placeholder="搜索项目" v-model="keyword" @input="search"/>
 	</div>
 </template>
 <script>
 export default {
 	name: 'm-search',
+	data(){
+		return {
+			keyword: ""
+		}
+	},
+	methods: {
+		search(){
+			this.$emit("search",this.keyword)
+		}
+	}
 }
 </script>
 <style lang="scss" scoped>

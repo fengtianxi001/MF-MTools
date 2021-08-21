@@ -1,16 +1,24 @@
 <template>
-	<div class="table-body">
+	<div class="table-body" v-if="data.length !== 0">
 		<ul
 			v-for="{ name, path, type, scripts, trusteeship } in data"
 			:key="path"
 			class="table-row"
 		>
 			<li :style="calcStyle(0)">
-				<icon icon="#icon-folder" class="table-icon"></icon>
+				<icon
+					icon="#icon-folder"
+					@click.native="open(path)"
+					class="table-icon"
+				></icon>
 				<span>{{ name }}</span>
 			</li>
 
-			<li :style="calcStyle(1)" style="cursor: pointer">
+			<li
+				:style="calcStyle(1)"
+				style="cursor: pointer"
+				@click="open(path)"
+			>
 				{{ path }}
 			</li>
 			<li
@@ -35,9 +43,13 @@
 			</li>
 		</ul>
 	</div>
+	<div v-else class="empty">
+		<div class="bgi"></div>
+	</div>
 </template>
 <script>
 import { Number2px } from '@/utils'
+const { exec } = require('child_process')
 export default {
 	name: 'table-body',
 	props: {
@@ -51,6 +63,10 @@ export default {
 				width: Number2px(width),
 				textAlign: align,
 			}
+		},
+		open(cwd) {
+			const code = 'explorer /root,' + cwd
+			exec(code)
 		},
 	},
 	components: {
@@ -69,6 +85,31 @@ export default {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+	}
+}
+.empty {
+	height: calc(100% - 46px);
+	/* border: 1px solid #2b6ee7; */
+	background-color: #f2f3f7;
+	border-radius: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	user-select: none;
+	position: relative;
+	div {
+		width: 70%;
+		height: 100%;
+		background-image: url('../../../assets/images/empty.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+	p {
+		position: absolute;
+		bottom: 20px;
+		color: #858585;
 	}
 }
 </style>

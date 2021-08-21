@@ -86,7 +86,7 @@ export default {
 			width: 100%;
 			height: 34px;
 			border-radius: 4px;
-			font-size: 14px;
+			font-size: 12px;
 			line-height: 34px;
 			padding: 0 10px;
 			cursor: pointer;

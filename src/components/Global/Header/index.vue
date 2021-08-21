@@ -1,12 +1,17 @@
 <template>
 	<header class="header">
-		<m-search></m-search>
+		<m-search @search="search"></m-search>
 		<icon icon="#icon-SetOutline" class="header-icon"></icon>
 	</header>
 </template>
 <script>
 export default {
 	name: 'm-header',
+	methods: {
+		search(keyword){
+			this.$emit("search",keyword)
+		}
+	}
 }
 </script>
 <style lang="scss" scoped>

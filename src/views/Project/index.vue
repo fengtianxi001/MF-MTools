@@ -1,6 +1,6 @@
 <template>
 	<div class="project">
-		<m-header></m-header>
+		<m-header @search="search"></m-header>
 		<m-table :data="projects"></m-table>
 	</div>
 </template>
@@ -41,6 +41,12 @@ export default {
 				console.log('projects', projects)
 				this.projects = insert('project', projects)
 			}
+		},
+		search(keyword) {
+			const { projects } = this
+			this.projects = get('project').filter(
+				cur => cur.name.indexOf(keyword) >= 0
+			)
 		},
 	},
 	mounted() {

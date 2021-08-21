@@ -13,12 +13,13 @@ if (!fs.existsSync(dataPath)) {
 	fs.writeFileSync(dataPath, JSON.stringify(rawData))
 }
 
-export const get = dataname => {
+export const get = (dataname, lazy = true) => {
 	const string_data = fs.readFileSync(dataPath, {
 		encoding: 'utf-8',
 	})
 	// console.log(string_data)
 	const object_data = JSON.parse(string_data)
+
 	if (dataname) return object_data[dataname]
 	return object_data
 }
@@ -26,11 +27,15 @@ export const get = dataname => {
 export const insert = (dataname = 'project', content) => {
 	const all = get()
 	const prev = all[dataname]
-	if (Array.isArray(content)) {
-		prev.push(...content)
-	} else {
-		prev.push(content)
+	if (!Array.isArray(content)) {
+		content = [content]
 	}
+	content.map(project => {
+		const index = prev.findIndex(cur => cur.path === project.path)
+		if (index < 0) {
+			prev.push(project)
+		}
+	})
 	fs.writeFileSync(dataPath, JSON.stringify(all))
 	return prev
 }
