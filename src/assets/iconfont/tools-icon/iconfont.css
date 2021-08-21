@@ -1,0 +1,95 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 2733199 */
+  src: url('iconfont.woff2?t=1629305237663') format('woff2'),
+       url('iconfont.woff?t=1629305237663') format('woff'),
+       url('iconfont.ttf?t=1629305237663') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-setting-full:before {
+  content: "\e660";
+}
+
+.icon-setting:before {
+  content: "\e60b";
+}
+
+.icon-search:before {
+  content: "\e695";
+}
+
+.icon-light:before {
+  content: "\e65f";
+}
+
+.icon-operate1:before {
+  content: "\e702";
+}
+
+.icon-operate2:before {
+  content: "\e6ec";
+}
+
+.icon-operate3:before {
+  content: "\e6ed";
+}
+
+.icon-night:before {
+  content: "\e661";
+}
+
+.icon-light2:before {
+  content: "\e666";
+}
+
+.icon-order:before {
+  content: "\e750";
+}
+
+.icon-logo:before {
+  content: "\e7a3";
+}
+
+.icon-function:before {
+  content: "\e733";
+}
+
+.icon-add:before {
+  content: "\e65e";
+}
+
+.icon-file:before {
+  content: "\e62c";
+}
+
+.icon-install:before {
+  content: "\e61a";
+}
+
+.icon-remove:before {
+  content: "\e62e";
+}
+
+.icon-more:before {
+  content: "\e625";
+}
+
+.icon-run:before {
+  content: "\ea5d";
+}
+
+.icon-vscode:before {
+  content: "\e6b8";
+}
+
+.icon-folder:before {
+  content: "\e60f";
+}
+

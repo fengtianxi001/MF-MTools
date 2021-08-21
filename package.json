@@ -1,25 +1,58 @@
 {
-	"name": "electron-quick-start",
-	"version": "1.0.0",
-	"description": "A minimal Electron application",
-	"main": "main.js",
+	"name": "codingstartup",
+	"version": "0.1.0",
+	"private": true,
+	"main": "background.js",
 	"scripts": {
-		"start": "nodemon --watch ./scripts/index.js --exec electron . ",
-		"dev": "electron . ",
-		"package": "electron-packager . mtools --platform=win32 --arch=x64 --icon=favicon.ico --out=./out --asar --app-version=0.0.1 --overwrite --ignore=node_modules"
+		"web:serve": "vue-cli-service serve",
+		"web:build": "vue-cli-service build",
+		"build": "vue-cli-service electron:build",
+		"dev": "vue-cli-service electron:serve"
 	},
-	"repository": "https://github.com/electron/electron-quick-start",
-	"keywords": [
-		"Electron",
-		"quick",
-		"start",
-		"tutorial",
-		"demo"
-	],
-	"author": "GitHub",
-	"license": "CC0-1.0",
+	"dependencies": {
+		"axios": "^0.21.1",
+		"core-js": "^3.6.5",
+		"element-ui": "^2.15.5",
+		"lowdb": "^1.0.0",
+		"vue": "^2.6.11",
+		"vue-router": "^3.2.0",
+		"vuex": "^3.4.0"
+	},
 	"devDependencies": {
-		"electron": "^13.1.4",
-		"electron-winstaller": "^5.0.0"
-	}
+		"@vue/cli-plugin-babel": "~4.5.0",
+		"@vue/cli-plugin-eslint": "~4.5.0",
+		"@vue/cli-plugin-router": "~4.5.0",
+		"@vue/cli-plugin-vuex": "~4.5.0",
+		"@vue/cli-service": "~4.5.0",
+		"babel-eslint": "^10.1.0",
+		"electron-devtools-installer": "^3.2.0",
+		"eslint": "^6.7.2",
+		"eslint-plugin-vue": "^6.2.2",
+		"node-sass": "^4.14.1",
+		"sass-loader": "^10.0.1",
+		"vue-cli-plugin-electron-builder": "^2.1.1",
+		"vue-template-compiler": "^2.6.11",
+		"sass": "^1.26.10",
+		"sass-resources-loader": "^2.1.0",
+		"electron": "^13.2.1"
+	},
+	"eslintConfig": {
+		"root": true,
+		"env": {
+			"node": true
+		},
+		"extends": [
+			"plugin:vue/essential",
+			"eslint:recommended"
+		],
+		"parserOptions": {
+			"parser": "babel-eslint"
+		},
+		"rules": {}
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not dead"
+	]
 }
