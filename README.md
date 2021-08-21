@@ -1,93 +1,20 @@
-## Product description：
+## Project-Management-Tools
 
-> This is a template file based on Vue 2.0
+## 项目简介 
 
-
-
-## About using
-
-
-
-### 1. Vuex
-
-This project uses modularity to organize `Vuex`，If you need the new store module, you just need to add the module folder under the store folder, the program will automatically retrieve and introduce the `index.js` under the folder
-
-
-
-### 2. Vue-router
-
-This project uses modularity to organize `Vue-router`, If you need to create a new Page in the views folder, the program will load the file automatically and you can access it directly from your route. 
-
-* the name of the route depends on the name attribute of your page component
-
-Examples: 
-
-```vue
-// view > demo.vue
-<template>...</template>
-<script>
-	export default{
-        name: "demo"
-    }
-</script>
-```
-
-- You can access it in your browser  `${host}:${port}/#/demo`
-- You can jump on the program `this.router.push(demo)`
-
-
-
-###  3. componets
-
-####	3-1. svg-icon
-
->  ICON material for this project uses [iconfont](https://www.iconfont.cn/) library, and is introduced in the symbol way
-
-- Create: You need to download the project on the [iconfont](https://www.iconfont.cn/), And copy the folder to the project's `src>assets>iconfont` folder, The program automatically loads the material in that directory
-- Use:  You can import the component where you want it,  And Pass in a icon-name, which you need to get on iconfont
-
-Examples:  
-
-```vue
-<template>
-	<svg-icon icon="xxxx"></svg-icon>
-</template>
-```
-
-
-
-### 4. websocket
-
-> This project encapsulates websocket, It includes offline reconnection, heartbeat detection and more
-
-- init: You need to ` import { create } from '@/api/websocket/index.js'`,And `create(${url})`
-
-- send:  You need to ` import { sendMessage} from '@/api/websocket/sendMessage.js'`
-
-  Examples:
-
-  ```js
-  import { sendMessage} from '@/api/websocket/sendMessage.js'
-  const param = {
-      id: 1000, //required
-      //....
-  }
-  sendMessage(params, response => {
-      console.log(response)
-  })
-  ```
-
-  > Each param needs to have a unique id attribute, and callback is automatically called when the request is responded to
-
-
-
-###  5.axios
-
-> This project provides the infrastructure for axios(Interceptor/baseURL). You can change it in the `src > utils > request` 
-
-
-
-###  6. request API
-
-> All program requests are placed at `src > api`, You can refer to the `member.js `
+这是一个前端项目的管理工具,由于自己的项目分散在磁盘的各个文件夹内,每次检索和启动都费时费力,所以萌生出开发项目统一入口的想法.
+	
+## 功能
+- 支持一键使用vscode打开项目
+- 支持npm包一键install
+- 支持一键打开文件夹
+- 支持项目类型识别
+- 支持文件夹名称搜索
+- 自动扫描packahe.json中的script脚本,支持脚本的一键启动
+## 下载
+点击此处下载 [应用](https://github.com/fengtianxi001/MTools/releases/download/V0.0.1/MTools.zip)
+## 快捷键
+`ctrl + space` 快速激活和隐藏
+## 截图
+![show](https://raw.githubusercontent.com/fengtianxi001/Project-Management-Tools/master/screenshots/1.png)
 
