@@ -21,6 +21,15 @@
 				></icon>
 				<span style="position: relative;top:-2px;left:-2px">拉取</span>
 			</el-dropdown-item>
+			<el-dropdown-item @click.native="commit()">
+				<icon
+					icon="icon-shangchuan5"
+					class="table-icon"
+					fill="#8baff2"
+				></icon>
+				<span style="position: relative;top:-2px;left:-2px">提交</span>
+			</el-dropdown-item>
+
 			<el-dropdown-item @click.native="push()">
 				<icon
 					icon="icon-shangchuan5"
@@ -41,7 +50,7 @@ export default {
 		path: String,
 	},
 	methods: {
-		push() {
+		commit() {
 			const { path } = this
 			const options = { path, detached: true }
 			exec(
@@ -53,6 +62,11 @@ export default {
 			const { path } = this
 			const options = { path, detached: true }
 			exec(`TortoiseGitProc /command:fetch /path:${path}`, options)
+		},
+		push() {
+			const { path } = this
+			const options = { path, detached: true }
+			exec(`TortoiseGitProc /command:push /path:${path}`, options)
 		},
 	},
 }
