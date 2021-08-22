@@ -5,7 +5,7 @@
 			<span>Mtools</span>
 		</div>
 		<ul class="menu-list">
-			<li class="menu-list-button menu-list-add">
+			<li class="menu-list-button menu-list-add" @click="add">
 				<icon
 					class="menu-list-item-icon"
 					icon="#icon-AddOutline"
@@ -42,6 +42,9 @@ export default {
 		handle(event) {
 			this.$router.push({ name: event })
 		},
+		add(){
+			this.$message.success("请拖拽文件夹到程序界面")
+		}
 	},
 	watch: {
 		$route: {

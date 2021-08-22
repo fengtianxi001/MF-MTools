@@ -23,7 +23,7 @@ export default {
 			if (e.dataTransfer.files.length === 0) return false
 			const folders = e.dataTransfer.files
 
-			this.dropProject(folders)
+			// this.dropProject(folders)
 			const foldersPath = Object.keys(folders).reduce((prev, cur) => {
 				return prev.push(folders[cur]['path']) && prev
 			}, [])
@@ -37,17 +37,9 @@ export default {
 				)
 			} else {
 				this.$message.success(`成功添加${projects.length}个项目文件`)
-				// console.log('projects', projects)
 				this.insertProject(projects)
-				// this.projects = insert('project', projects)
 			}
 		},
-		// search(keyword) {
-		// 	const { projects } = this
-		// 	this.projects = get('project').filter(
-		// 		cur => cur.name.indexOf(keyword) >= 0
-		// 	)
-		// },
 	},
 	mounted() {
 		const project = document.querySelector('.project')

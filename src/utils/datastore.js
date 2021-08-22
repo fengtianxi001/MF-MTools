@@ -1,6 +1,5 @@
 /*eslint-disable*/
 // 初始化数据库
-const { autoUpdater } = require('electron')
 const fs = require('fs')
 const path = require('path')
 
@@ -23,16 +22,15 @@ export const update = (data, dataname = 'project') => {
 	fs.writeFileSync(dataPath, JSON.stringify(object_data))
 }
 
-
-export const get = (dataname="project") => {
+export const get = (dataname = 'project') => {
 	const string_data = fs.readFileSync(dataPath, {
 		encoding: 'utf-8',
 	})
-	// console.log(string_data)
 	const object_data = JSON.parse(string_data)
-
-	if (dataname) return object_data[dataname]
-	return object_data
+	const res = object_data[dataname]
+	return res.filter(cur => 
+		fs.existsSync(path.resolve(cur.path))
+	)
 }
 
 // export const insert = (dataname = 'project', content) => {
