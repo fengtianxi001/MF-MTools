@@ -50,8 +50,8 @@
 const fs = require('fs')
 const path = require('path')
 const { exec } = require('child_process')
-import { del } from '../../../utils/datastore'
-import eventbus from '../../../api/eventbus'
+// import { del } from '../../../utils/datastore'
+// import eventbus from '../../../api/eventbus'
 export default {
 	name: 'operate-components',
 	props: {
@@ -105,18 +105,15 @@ export default {
 				showClose: false,
 			})
 				.then(() => {
-					const { dirpath } = this
-
-					console.log(del('project', dirpath))
+					// const { dirpath } = this
 					// const where = { name: path.basename(dirpath) }
 					// // const res = delProject(where)
-					// console.log(res)
 					// if (res) {
 					// 	this.$message.success('项目移除成功!')
 					// } else {
 					// 	this.$message.error('未知错误导致,项目移除失败!')
 					// }
-					eventbus.$emit('updateProject')
+					// eventbus.$emit('updateProject')
 				})
 				.catch(() => {})
 		},

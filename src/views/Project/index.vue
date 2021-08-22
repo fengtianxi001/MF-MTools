@@ -8,20 +8,21 @@
 /*eslint-disable*/
 import MTable from './components/table.vue'
 import { loopDir } from '@/utils'
-import { get, insert } from '../../utils/datastore'
-import eventbus from '@/api/eventbus'
+// import { get, insert } from '../../utils/datastore'
+// import eventbus from '@/api/eventbus'
+import { mapActions, mapGetters } from 'vuex'
 export default {
-	data() {
-		return {
-			projects: get('project'),
-		}
+	computed: {
+		...mapGetters(['projects']),
 	},
 	components: {
 		MTable,
 	},
 	methods: {
+		...mapActions(["insertProject"]),
 		dropProject(e) {
 			if (!e.dataTransfer) return false
+			if (e.dataTransfer.files.length === 0) return false
 			const folders = e.dataTransfer.files
 
 			this.dropProject(folders)
@@ -38,8 +39,9 @@ export default {
 				)
 			} else {
 				this.$message.success(`成功添加${projects.length}个项目文件`)
-				console.log('projects', projects)
-				this.projects = insert('project', projects)
+				// console.log('projects', projects)
+				this.insertProject(projects)
+				// this.projects = insert('project', projects)
 			}
 		},
 		search(keyword) {
@@ -55,9 +57,6 @@ export default {
 		project.addEventListener('dragover', e => {
 			e.preventDefault()
 			e.stopPropagation()
-		})
-		eventbus.$on('updateProject', () => {
-			this.projects = get('project')
 		})
 	},
 }

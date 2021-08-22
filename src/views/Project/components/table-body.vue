@@ -1,7 +1,11 @@
 <template>
-	<div class="table-body" v-if="data.length !== 0">
+	<draggable
+		class="table-body"
+		v-if="projectList.length !== 0"
+		v-model="projectList"
+	>
 		<ul
-			v-for="{ name, path, type, scripts, trusteeship } in data"
+			v-for="{ name, path, type, scripts, trusteeship } in projectList"
 			:key="path"
 			class="table-row"
 		>
@@ -42,7 +46,7 @@
 				></operateComponents>
 			</li>
 		</ul>
-	</div>
+	</draggable>
 	<div v-else class="empty">
 		<div class="bgi"></div>
 	</div>
@@ -50,10 +54,10 @@
 <script>
 import { Number2px } from '@/utils'
 const { exec } = require('child_process')
+import draggable from 'vuedraggable'
 export default {
 	name: 'table-body',
 	props: {
-		data: Array,
 		header: Array,
 	},
 	methods: {
@@ -72,6 +76,17 @@ export default {
 	components: {
 		trusteeshipType: () => import('./trusteeship-type.vue'),
 		operateComponents: () => import('./operate-components.vue'),
+		draggable,
+	},
+	computed: {
+		projectList: {
+			get() {
+				return this.$store.state.Project.list
+			},
+			set(value) {
+				this.$store.commit('setProject', value)
+			},
+		},
 	},
 }
 </script>
