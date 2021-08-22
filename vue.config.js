@@ -43,7 +43,7 @@ module.exports = {
 		electronBuilder: {
 			builderOptions: {
 				appId: 'com.example.app',
-				productName: 'aDemo',
+				productName: 'Mtools',
 				copyright: 'Copyright © 2021', //版权信息
 				directories: {
 					output: './dist', //输出文件路径
