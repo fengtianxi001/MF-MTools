@@ -1,6 +1,6 @@
 <template>
 	<div class="project">
-		<m-header @search="search"></m-header>
+		<m-header></m-header>
 		<m-table :data="projects"></m-table>
 	</div>
 </template>
@@ -8,8 +8,6 @@
 /*eslint-disable*/
 import MTable from './components/table.vue'
 import { loopDir } from '@/utils'
-// import { get, insert } from '../../utils/datastore'
-// import eventbus from '@/api/eventbus'
 import { mapActions, mapGetters } from 'vuex'
 export default {
 	computed: {
@@ -19,7 +17,7 @@ export default {
 		MTable,
 	},
 	methods: {
-		...mapActions(["insertProject"]),
+		...mapActions(['insertProject']),
 		dropProject(e) {
 			if (!e.dataTransfer) return false
 			if (e.dataTransfer.files.length === 0) return false
@@ -44,12 +42,12 @@ export default {
 				// this.projects = insert('project', projects)
 			}
 		},
-		search(keyword) {
-			const { projects } = this
-			this.projects = get('project').filter(
-				cur => cur.name.indexOf(keyword) >= 0
-			)
-		},
+		// search(keyword) {
+		// 	const { projects } = this
+		// 	this.projects = get('project').filter(
+		// 		cur => cur.name.indexOf(keyword) >= 0
+		// 	)
+		// },
 	},
 	mounted() {
 		const project = document.querySelector('.project')

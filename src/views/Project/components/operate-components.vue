@@ -50,6 +50,7 @@
 const fs = require('fs')
 const path = require('path')
 const { exec } = require('child_process')
+import { mapActions } from "vuex";
 // import { del } from '../../../utils/datastore'
 // import eventbus from '../../../api/eventbus'
 export default {
@@ -59,6 +60,7 @@ export default {
 		dirpath: String,
 	},
 	methods: {
+		...mapActions(["delProject"]),
 		runCode(code, options = {}) {
 			exec(code, options)
 		},
@@ -105,15 +107,8 @@ export default {
 				showClose: false,
 			})
 				.then(() => {
-					// const { dirpath } = this
-					// const where = { name: path.basename(dirpath) }
-					// // const res = delProject(where)
-					// if (res) {
-					// 	this.$message.success('项目移除成功!')
-					// } else {
-					// 	this.$message.error('未知错误导致,项目移除失败!')
-					// }
-					// eventbus.$emit('updateProject')
+					this.delProject(this.dirpath)
+					this.$message.success('项目移除成功!')
 				})
 				.catch(() => {})
 		},

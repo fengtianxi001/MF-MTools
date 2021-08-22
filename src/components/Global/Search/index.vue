@@ -4,6 +4,7 @@
 	</div>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
 	name: 'm-search',
 	data(){
@@ -12,8 +13,9 @@ export default {
 		}
 	},
 	methods: {
+		...mapActions(["setKeyword"]),
 		search(){
-			this.$emit("search",this.keyword)
+			this.setKeyword(this.keyword)
 		}
 	}
 }

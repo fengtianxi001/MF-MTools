@@ -60,6 +60,9 @@ export default {
 	props: {
 		header: Array,
 	},
+	data() {
+		return {}
+	},
 	methods: {
 		calcStyle(index) {
 			const { width, align } = this.header[index]
@@ -84,7 +87,7 @@ export default {
 				return this.$store.state.Project.list
 			},
 			set(value) {
-				this.$store.commit('setProject', value)
+				this.$store.commit('orderProject', value)
 			},
 		},
 	},
