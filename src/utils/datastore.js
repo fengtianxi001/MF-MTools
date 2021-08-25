@@ -7,6 +7,7 @@ const dataPath = path.resolve('./data.json')
 
 const rawData = {
 	project: [],
+	files:[]
 }
 //判断是否存在文件
 if (!fs.existsSync(dataPath)) {
