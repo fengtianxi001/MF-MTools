@@ -16,7 +16,7 @@
 
 这是一个前端项目的管理工具,由于自己的项目分散在磁盘的各个文件夹内,每次检索和启动都费时费力,所以萌生出开发项目统一入口的想法.
 
-<img style="width:60%" src="https://raw.githubusercontent.com/fengtianxi001/Project-Management-Tools/master/screenshots/1.png">
+<img style="width:200px" src="https://raw.githubusercontent.com/fengtianxi001/Project-Management-Tools/master/screenshots/1.png">
 
 
 
