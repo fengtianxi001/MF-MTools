@@ -7,7 +7,10 @@
   <img src="https://img.shields.io/github/forks/fengtianxi001/MTools">
   <img src="https://img.shields.io/github/stars/fengtianxi001/MTools">
 </div>
-    
+
+## 截图
+![show](https://raw.githubusercontent.com/fengtianxi001/Project-Management-Tools/master/screenshots/1.png)
+
     
 ## 项目简介 
 
@@ -53,6 +56,5 @@ npm run build
 ## 快捷键
 `ctrl + space` 快速激活和隐藏
 
-## 截图
-![show](https://raw.githubusercontent.com/fengtianxi001/Project-Management-Tools/master/screenshots/1.png)
+
 
