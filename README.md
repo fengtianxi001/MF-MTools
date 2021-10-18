@@ -26,6 +26,10 @@
 
 [点击此处下载应用安装包](https://github.com/fengtianxi001/MTools/releases/download/v1.0.0/mtools.Setup.1.01.0.exe)
 
+## 提示
+- 所有数据均保存在本地,无联网行为
+- 所有的数据默认保存在`D://mtools_cache/`(若没有D盘,保存在`C://mtools_cache/`)文件夹下, 程序迭代和重新安装,可以自动导入旧数据.
+
 ## 主页面展示
 ![show](https://github.com/fengtianxi001/MTools/blob/master/screenshots/main.png?raw=true)
 
