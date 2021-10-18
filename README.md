@@ -24,7 +24,7 @@
 [点击此处下载应用安装包](https://github.com/fengtianxi001/MTools/releases/download/V0.0.1/MTools.zip)
 
 ## 主页面展示
-![show](https://raw.githubusercontent.com/fengtianxi001/MTools/master/screenshots/Snipaste_2021-10-18_22-18-59.png)
+![show](https://github.com/fengtianxi001/MTools/blob/master/screenshots/main.png?raw=true)
 
 
 
