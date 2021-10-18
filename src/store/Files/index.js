@@ -1,64 +1,46 @@
-import { update, get } from '../../utils/datastore'
+/*eslint-disable*/
+import { fileData } from '../../database/index'
 export default {
 	state: {
-		list: get('files'),
-		keyword: '',
+		files: fileData.fetch(),
+		fileSet: {
+			column: 3,
+		},
 	},
 	mutations: {
-		setFilesKeyword(state, data) {
-			state.keyword = data
-			state.list = get().filter(
-				cur =>
-					cur.name
-						.toLocaleLowerCase()
-						.indexOf(data.toLocaleLowerCase()) >= 0
-			)
-		},
 		setFiles(state, data) {
-			state.list = data
-			update(state.list, 'files')
+			state.files = JSON.parse(JSON.stringify(data))
+			this.commit('keepFilesStorageFit', state.files)
 		},
-		insertFiles(state, data) {
-			data.map(cur => {
-				const flag = state.list.find(
-					list_item => list_item.path === cur.path
-				)
-				if (!flag) {
-					state.list.unshift(cur)
-					update(state.list, 'files')
-				}
-			})
+		addFiles(state, data) {
+			const _data = JSON.parse(JSON.stringify(data))
+			state.files.unshift(_data)
+			this.commit('keepFilesStorageFit', state.files)
 		},
-		delFiles(state, path) {
-			const index = state.list.findIndex(cur => cur.path === path)
-			state.list.splice(index, 1)
-			const raw = get('files')
-			const index2 = raw.findIndex(cur => cur.path === path)
-			raw.splice(index2, 1)
-			update(raw, 'files')
+		updateFiles(state, data) {
+			const _data = JSON.parse(JSON.stringify(data))
+			const cache = [...state.files]
+			const index = cache.findIndex(files => files.id === _data.id)
+			cache[index] = _data
+			state.files = cache
+			this.commit('keepFilesStorageFit', state.files)
 		},
-		orderFiles(state, data) {
-			if (state.keyword.length === 0) {
-				state.list = data
-				update(state.list, 'files')
-			}
+		deleteFile(state, id) {
+			const cache = [...state.files]
+			const index = cache.findIndex(file => file.id === id)
+			cache.splice(index, 1)
+			state.files = cache
+			this.commit('keepFilesStorageFit', state.files)
 		},
-	},
-	actions: {
-		setFilesKeyword({ commit }, data) {
-			commit('setFilesKeyword', data)
+		keepFilesStorageFit(state, data) {
+			fileData.update(data)
 		},
-		setFiles({ commit }, data) {
-			commit('setFiles', data)
-		},
-		insertFiles({ commit }, data) {
-			commit('insertFiles', data)
-		},
-		delFiles({ commit }, data) {
-			commit('delFiles', data)
+		setFileColumn(state, data) {
+			state.fileSet.column = data
 		},
 	},
 	getters: {
-		files: state => state.list,
+		files: state => JSON.parse(JSON.stringify(state.files)),
+		fileColumn: state => JSON.parse(JSON.stringify(state.fileSet.column)),
 	},
 }

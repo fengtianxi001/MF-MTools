@@ -12,9 +12,15 @@ export default {
 </script>
 <style lang="scss">
 #app {
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-		Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-	height: 100%;
-	width: 100%;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	border-radius: 6px;
+	overflow: hidden;
+	box-sizing: border-box;
+	padding: $padding;
 }
 </style>

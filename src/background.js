@@ -1,4 +1,4 @@
-'use strict'
+/*eslint-disable*/
 const path = require('path')
 import { app, Tray, BrowserWindow, Menu, globalShortcut } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
@@ -7,18 +7,26 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 // Scheme must be registered before the app is ready
 Menu.setApplicationMenu(null)
-let isShow = true
-let appTray = null
+// let isShow = true
+// let appTray = null
 async function createWindow() {
 	// Create the browser window.
 	const win = new BrowserWindow({
-		width: 900,
-		height: 505,
+		width: 1042,
+		height: 672,
+		resizable: false,
+		frame: false,
+		closable: true,
+		transparent: true,
+		opacity: 1,
+		hasShadow: true,
 		webPreferences: {
 			// Use pluginOptions.nodeIntegration, leave this alone
 			// See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
 			nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
 			contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
+			enableRemoteModule: true,
+			webSecurity: false,
 		},
 	})
 
@@ -29,22 +37,6 @@ async function createWindow() {
 		createProtocol('app')
 		win.loadURL('app://./index.html')
 	}
-	setTray(win)
-	win.on('minimize', function(event) {
-		event.preventDefault()
-		win.hide()
-		isShow = false
-	})
-	globalShortcut.register('space+ctrl', () => {
-		if (isShow) {
-			win.hide()
-			isShow = false
-		} else {
-			win.show()
-			isShow = true
-		}
-	})
-
 }
 
 // Quit when all windows are closed.
@@ -90,28 +82,4 @@ if (isDevelopment) {
 			app.quit()
 		})
 	}
-}
-
-function setTray(mainWindow) {
-	let trayMenuTemplate = [
-		{
-			label: '退出',
-			click: function() {
-				app.quit()
-			},
-		},
-	]
-	// 当前目录下的app.ico图标
-	let iconPath = path.resolve('./favicon.png')
-	appTray = new Tray(iconPath)
-	// 图标的上下文菜单
-	const contextMenu = Menu.buildFromTemplate(trayMenuTemplate)
-	mainWindow.hide()
-	appTray.setToolTip('mtools')
-	appTray.setContextMenu(contextMenu)
-	appTray.on('click', function() {
-		mainWindow.show()
-		// appTray.destroy()
-		isShow = true
-	})
 }

@@ -1,26 +1,44 @@
 /*eslint-disable*/
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Layout from '../components/Layout/index.vue'
 
 Vue.use(VueRouter)
-
+//获取原型对象上的push函数
+const originalPush = VueRouter.prototype.push
+//修改原型对象中的push方法
+VueRouter.prototype.push = function push(location) {
+	return originalPush.call(this, location).catch(err => err)
+}
 const routes = [
 	{
 		path: '/',
-		name: 'home',
-		component: Layout,
-		redirect: '/project',
+		redirect: '/projects',
+		component: () => import('../components/m-layout'),
 		children: [
 			{
-				path: 'project',
-				name: 'project',
-				component: () => import('../views/Project'),
+				name: 'projects',
+				path: '/projects',
+				component: () => import('../views/Projects'),
 			},
 			{
-				path: 'files',
 				name: 'files',
+				path: '/files',
 				component: () => import('../views/Files'),
+			},
+			{
+				name: 'software',
+				path: '/software',
+				component: () => import('../views/Software'),
+			},
+			{
+				name: 'webdoor',
+				path: '/webdoor',
+				component: () => import('../views/Webdoor'),
+			},
+			{
+				name: 'setting',
+				path: '/setting',
+				component: () => import('../views/Setting'),
 			},
 		],
 	},

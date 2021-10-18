@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import path from 'path'
+// import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex)
 
 const contexts = require.context('./', true, /index.js$/);
@@ -13,5 +14,6 @@ contexts.keys().forEach(key => {
   modules[moduleName] = contexts(key).default || contexts(key)
 })
 export default new Vuex.Store({
-  modules
+	modules,
+	// plugins: [createPersistedState()],
 })
