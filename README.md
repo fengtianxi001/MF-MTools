@@ -94,7 +94,6 @@ npm run build
 点击此处下载 [应用](https://github.com/fengtianxi001/MTools/releases/download/V0.0.1/MTools.zip)
 
 ## 更多页面效果展示
-![show](https://github.com/fengtianxi001/MTools/blob/master/screenshots/Snipaste_2021-10-18_22-19-46.png)
 ![show](https://github.com/fengtianxi001/MTools/blob/master/screenshots/Snipaste_2021-10-18_22-21-28.png?raw=true)
 ![show](https://github.com/fengtianxi001/MTools/blob/master/screenshots/Snipaste_2021-10-18_22-21-52.png?raw=true)
 ![show](https://github.com/fengtianxi001/MTools/blob/master/screenshots/Snipaste_2021-10-18_22-22-02.png?raw=true)
