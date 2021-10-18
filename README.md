@@ -17,11 +17,14 @@
 ## 项目简介 
 
 这是一个前端项目的管理工具,由于自己的项目分散在磁盘的各个文件夹内,每次检索和启动都费时费力,所以萌生出开发项目统一入口的想法.
-所以在功能和交互的设计上,大多以自己的习惯为参考,如有不合理的地方,请指教.同时这是一个会不停迭代的项目 
+所以在功能和交互的设计上,大多以自己的习惯为参考,如有不合理的地方,请指教.同时这是一个会不停迭代的项目
 
 ## 下载
 > 安装包可能会落后于代码版本,所以最好是clone代码,自行打包
-[点击此处下载应用安装包](https://github.com/fengtianxi001/MTools/releases/download/V0.0.1/MTools.zip)
+
+> 目前仅支持windows平台
+
+[点击此处下载应用安装包](https://github.com/fengtianxi001/MTools/releases/download/v1.0.0/mtools.Setup.1.01.0.exe)
 
 ## 主页面展示
 ![show](https://github.com/fengtianxi001/MTools/blob/master/screenshots/main.png?raw=true)
