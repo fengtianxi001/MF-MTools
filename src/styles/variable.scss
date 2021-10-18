@@ -1,0 +1,24 @@
+//颜色 背景 字体的配置文件
+
+//布局的基本配置
+$padding: 15px;
+$width: calc(100vw - #{$padding * 2});
+$height: calc(100vh - #{$padding * 2});
+$transition: all 0.4s ease-in-out;
+//menu:
+$buttonActive: rgb(24, 24, 24);
+$border: 1px solid #6b6b6b33;
+$menuBgc: #222d35;
+$menuDefaultColor: #fff;
+$menuActiveBgc: #131c23;
+$menuActiveColor: #38a576;
+
+$tabbarBgc: #24292f;
+$tabbarButtonBgc: #222d35;
+$tabbarButtonColor: #38a576;
+
+$mainBgc: #131c23;
+$cardBgc:#222d35;
+
+
+$barHeight: 40px;

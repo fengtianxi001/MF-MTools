@@ -1,0 +1,55 @@
+@font-face {
+  font-family: "webdoor"; /* Project id 2749062 */
+  src: url('iconfont.woff2?t=1632315653070') format('woff2'),
+       url('iconfont.woff?t=1632315653070') format('woff'),
+       url('iconfont.ttf?t=1632315653070') format('truetype');
+}
+
+.webdoor {
+  font-family: "webdoor" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.webdoor-baidu:before {
+  content: "\e600";
+}
+
+.webdoor-fanyi:before {
+  content: "\e6ba";
+}
+
+.webdoor-baidu-line:before {
+  content: "\e762";
+}
+
+.webdoor-github:before {
+  content: "\e651";
+}
+
+.webdoor-baidu1:before {
+  content: "\e612";
+}
+
+.webdoor-fanyi1:before {
+  content: "\e61e";
+}
+
+.webdoor-github1:before {
+  content: "\e76f";
+}
+
+.webdoor-fanyi2:before {
+  content: "\e601";
+}
+
+.webdoor-github2:before {
+  content: "\e7b2";
+}
+
+.webdoor-fanyi3:before {
+  content: "\e6fb";
+}
+
