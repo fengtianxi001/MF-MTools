@@ -1,0 +1,18 @@
+//颜色 背景 字体的配置文件
+
+//视图宽高
+$vw: 1080px;
+$vh: 746px;
+
+// layout布局的参数
+$layout-menu-w: 50px;
+$layout-bar-h: 35px;
+
+$page-w: $vw - $layout-menu-w;
+$page-h: $vh - $layout-bar-h;
+
+$element-h: 30px;
+
+$active_green: #38a576;
+
+$box_shadow: 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 2px 1px -1px rgb(0 0 0 / 12%), 0px 1px 3px 0px rgb(0 0 0 / 20%);

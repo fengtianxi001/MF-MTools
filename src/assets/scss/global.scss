@@ -1,0 +1,22 @@
+@import './handle.scss';
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	list-style: none;
+	// transition: background-color 1s ease;
+	&::-webkit-scrollbar {
+		width: 3px;
+	}
+	&::-webkit-scrollbar-thumb {
+		height: 50px;
+		@include background_color('background_color1');
+		border-radius: 2px;
+		outline-offset: -2px;
+	}
+}
+
+.flex {
+	display: flex;
+}

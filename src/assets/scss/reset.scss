@@ -1,0 +1,76 @@
+//一些外部组件样式的重写
+@import './handle.scss';
+
+//抽屉样式重写
+.el-drawer {
+	@include background_color('background_color5');
+	box-shadow: 0 0 0 transparent !important;
+	padding: 20px;
+	border-left-width: 1px;
+	border-left-style: solid;
+	@include border_color('border_color2');
+	.el-drawer__header {
+		display: none;
+	}
+}
+
+//模态框样式重写
+.v-modal {
+	background-color: transparent !important;
+	// backdrop-filter: blur(1px)
+}
+//弹窗样式重写
+.el-message-box {
+	@include background_color('background_color5');
+	@include border_color('border_color3');
+	border-radius: 0 !important;
+	// box-shadow: 0 0 6px 0px #00000040 !important;
+	box-shadow: 0 0 0 transparent !important;
+
+	.el-message-box__title {
+		@include font_color('font_color1');
+	}
+	.el-message-box__content {
+		@include font_color('font_color1');
+	}
+}
+//按钮样式重写
+button.el-button {
+	background-color: #3c3c3c;
+	color: #fff;
+	border-color: #3c3c3c;
+	transition: background 0.3s ease;
+	height: 30px;
+	padding: 0 24px;
+	&:hover {
+		background-color: #3c3c3c;
+		color: #fff;
+		border-color: #3c3c3c;
+	}
+	&:active {
+		color: #fff;
+		border-color: transparent !important;
+		background: transparent !important;
+	}
+	&.el-button--primary {
+		background-color: #38a576;
+		color: #fff;
+		border-color: #38a576;
+	}
+}
+
+div.el-loading-mask {
+	@include background_color('background_color5');
+	opacity: 0.5;
+	// backdrop-filter: blur(4px);
+	.el-loading-spinner .path {
+		stroke: $active_green;
+		stroke-width: 6px;
+	}
+}
+
+.el-rate__icon {
+	font-size: 13px !important;
+	// @include font_color('background_color2');
+	margin-right: 1px;
+}
