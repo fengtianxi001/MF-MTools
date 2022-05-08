@@ -3,10 +3,9 @@
     <li class="b-files-tree-item">
       ...
     </li>
-
     <li v-for="item in files" :key="item.path" class="b-files-tree-item">
       <div>
-        <i class='far fa-file-alt'></i>
+        <i class='fas fa-folder' style='color:#54aeff'></i>
         <span>{{ item.label }}</span>
       </div>
       <span>2022-12-12 12:12:12</span>
@@ -152,7 +151,7 @@ const files = [
     cursor: pointer;
     justify-content: space-between;
 
-    .far {
+    .fas {
       margin-right: 6px;
       font-size: 14px;
     }

@@ -1,10 +1,12 @@
 <template>
-  <div class="project">
-    <ProjectCard 
-      v-for="project in projects" 
-      :key="project.id" 
-      :project="project" 
-    />
+  <div class="projects">
+    <div class="projects-search">
+      <input type="text">
+    </div>
+    <div class="projects-content">
+      <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
+    </div>
+
   </div>
 </template>
 <script setup lang="ts">
@@ -46,7 +48,15 @@ const cacheProjects: projectType[] = [{
 const projects = reactive(cacheProjects)
 </script>
 <style lang="scss" scoped>
-.project {
+.projects-search {
+  width: 100%;
+  height: 100%;
+  border: $border;
+  padding: 6px;
+  margin-bottom: 10px;
+}
+
+.projects-content {
   width: 100%;
   height: 100%;
   display: grid;
