@@ -1,5 +1,5 @@
 const fs = require("fs");
-import {  DATABASE_DATA_URL,PROJECTS_URL,FILES_URL } from "@/config/database";
+import { DATABASE_DATA_URL, PROJECTS_URL, FILES_URL } from "configs/database";
 import { mkdirsSync } from "@/utils/index";
 class Database {
   constructor() {

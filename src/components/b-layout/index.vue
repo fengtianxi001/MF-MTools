@@ -1,14 +1,14 @@
 <template>
   <div class="layout-main">
-    <LayoutMenu :menus="menus" @click="onMenuItemHandle"></LayoutMenu>
+    <LayoutMenu :menus="menus" @click="onMenuItemHandle" />
     <div class="layout-main-content">
-      <router-view></router-view>
+      <router-view />
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import LayoutMenu from "./b-layout-menu.vue";
-import menus from "@/config/menus";
+import { menus } from "configs/menus";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const onMenuItemHandle = (path: string) => {

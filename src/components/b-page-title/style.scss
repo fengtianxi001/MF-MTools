@@ -1,0 +1,34 @@
+.menu-bar {
+    height: 30px;
+    width: 100vw;
+    background-color: #f1f3f4;
+    -webkit-app-region: drag;
+    border-bottom: 1px solid #cccccc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+  
+    .menu-bar-title {
+      // font-weight: bold;
+      color: #666;
+    }
+  
+    ul {
+      display: flex;
+      align-items: center;
+  
+      li {
+        width: 30px;
+        height: 20px;
+        // background-color: #c7cacf;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 10px;
+        font-size: 12px;
+        cursor: pointer;
+        -webkit-app-region: no-drag;
+      }
+    }
+  }

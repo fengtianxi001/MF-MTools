@@ -2,19 +2,18 @@
   <ul class="layout-main-menu">
     <li class="layout-menu-item" v-for="{ title, path, icon } in menus" :key="path" @click="onHandle(path)">
       <div class="layout-menu-item-icon">
-        <i :class="icon"></i>
+        <i :class="icon" />
       </div>
       <div class="layout-menu-item-name">{{ title }}</div>
     </li>
   </ul>
 </template>
 <script setup lang="ts">
-import { menusConfigType } from "@/config/config-menus";
-import { defineProps, defineEmits } from "vue";
-interface propsType {
-  menus: Array<menusConfigType>;
-}
-defineProps<propsType>();
+import { menusConfigType } from "configs/menus";
+import { defineEmits } from "vue";
+defineProps<{
+  menus: menusConfigType;
+}>();
 const emit = defineEmits<{
   (e: "click", value?: string): void;
 }>();
@@ -34,7 +33,6 @@ const onHandle = (path: string) => {
   .layout-menu-item {
     width: 100%;
     height: 45px;
-    // background-color: #f1f3f4;
     border: 1px solid #cccccc;
     padding: 5px;
     display: flex;

@@ -1,26 +1,28 @@
 <template>
   <div class="project">
-    <ProjectCard v-for="item in projects" :key="item.id" :project="item" />
+    <ProjectCard 
+      v-for="project in projects" 
+      :key="project.id" 
+      :project="project" 
+    />
   </div>
 </template>
 <script setup lang="ts">
 import ProjectCard from "../components/project-card.vue";
-import { useDragFile } from "@/hooks/useDragFile";
+// import { useDragFile } from "@/hooks/useDragFile";
 import { reactive } from "vue";
 import { projectType } from "@/views/Projects/types/index";
-import { values } from "lodash";
-import { isLeaf } from "element-plus/lib/utils";
-const { files } = useDragFile({
-  formatter: (fileList) => {
-    return fileList.map(file => ({
-      path: file.path,
-      name: file.name,
-      lastModified: file.lastModified,
-      type: file.type
-    }))
-  },
-  success: () => { }
-})
+// const { files } = useDragFile({
+//   formatter: (fileList) => {
+//     return fileList.map(file => ({
+//       path: file.path,
+//       name: file.name,
+//       lastModified: file.lastModified,
+//       type: file.type
+//     }))
+//   },
+//   success: () => { }
+// })
 const cacheProjects: projectType[] = [{
   id: "123",
   name: "MTOOLS2.0",
@@ -38,10 +40,10 @@ const cacheProjects: projectType[] = [{
     isLeaf: true,
   }],
   isGit: true,
-  topics: ["vue"]
+  topics: ['Vue', 'three', 'node', '123', 'node'],
+  description: "一个狗都不用的前端开发工具"
 }]
 const projects = reactive(cacheProjects)
-// import Layout from "@/components/b-layout/index.vue";
 </script>
 <style lang="scss" scoped>
 .project {

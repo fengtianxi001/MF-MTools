@@ -4,30 +4,28 @@
       <ProjectAvatar :name="project.name" :size="[70, 55]"></ProjectAvatar>
       <div class="project-card-info">
         <div class="project-card-name">{{ project.name }}</div>
-        <div class="project-card-intro">
-          肯定是解放多少积分肯定是解放多少积分肯定是解放多少积分
+        <div class="project-card-description">{{ project.description }}</div>
+        <div class="project-card-createtime" v-if="isShowCreateTime">{{ formatDay(project.createTime, "YYYY-MM-DD") }}
         </div>
       </div>
     </div>
-    <BBadges :badges="['Vue', 'three', 'node', '1', 'three', 'node', '1']" :lines="1"></BBadges>
-    <!-- <ul class="project-card-badge">
-      <li>Vue</li>
-      <li>three.js</li>
-      <li>node.js</li>
-      <li>electron</li>
-    </ul> -->
+    <BBadges :badges="project.topics" :lines="1"></BBadges>
   </div>
 </template>
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { computed } from "vue";
 import { createWindow } from "@/controllers/window/plugins";
 import { projectType } from "@/views/Projects/types/index";
+import { formatDay, getStringBytes } from "@/utils/index"
 import ProjectAvatar from "./project-avatar.vue"
 import BBadges from "@/components/b-badges/index.vue"
+
 interface propsType {
   project: projectType
 }
 const props = defineProps<propsType>()
+
+// console.log(formatDay(props.project.createTime))
 const onHandle = () => {
   createWindow({
     width: 780,
@@ -39,6 +37,11 @@ const onHandle = () => {
     name: "project",
   });
 };
+
+const isShowCreateTime = computed(() => {
+  console.log(getStringBytes(props.project.description))
+  return getStringBytes(props.project.description) <= 18 ? true : false
+})
 </script>
 <style lang="scss" scoped>
 .project-card {
@@ -64,18 +67,25 @@ const onHandle = () => {
 
       .project-card-name {
         flex-shrink: 0;
-        @include ellipsis(1);
+        @extend %one-ellipsis;
         width: 100%;
         font-size: 16px;
         font-weight: bold;
       }
 
-      .project-card-intro {
+      .project-card-description {
         width: 100%;
         font-size: 12px;
         word-break: break-all;
-        @include ellipsis(2);
-        color: #888;
+        @extend %two-ellipsis;
+        color: #999;
+        // text-decoration: underline;
+      }
+
+      .project-card-createtime {
+        font-size: 12px;
+        line-height: 12px;
+        color: #999;
       }
     }
   }

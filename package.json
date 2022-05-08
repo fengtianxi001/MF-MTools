@@ -10,6 +10,7 @@
     "dependencies": {
         "@types/lodash-es": "^4.17.6",
         "core-js": "^3.8.3",
+        "dayjs": "^1.11.2",
         "element-plus": "^2.1.10",
         "lodash-es": "^4.17.21",
         "mf-fonts": "^1.0.1",

@@ -1,3 +1,5 @@
+const path = require("path"); //引入path模块
+const resolve = (dir) => path.join(__dirname, dir);
 module.exports = {
   publicPath: "./",
   lintOnSave: false,
@@ -28,6 +30,20 @@ module.exports = {
       enableRemoteModule: true,
       webSecurity: false,
     },
+  },
+  chainWebpack: (config) => {
+    config.resolve.alias
+      .set("@", resolve("./src"))
+      .set("assets", resolve("./src/assets"))
+      .set("components", resolve("./src/components"))
+      .set("constants", resolve("./src/constants"))
+      .set("controllers", resolve("./src/controllers"))
+      .set("styles", resolve("./src/styles"))
+      .set("utils", resolve("./src/utils"))
+      .set("views", resolve("./src/views"))
+      .set("hooks", resolve("./src/hooks"))
+
+      .set("configs", resolve("./src/configs"));
   },
   css: {
     loaderOptions: {

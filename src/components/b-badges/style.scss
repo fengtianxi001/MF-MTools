@@ -1,0 +1,19 @@
+.b-badges {
+  margin-top: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  grid-column-gap: 2px;
+  grid-row-gap: 2px;
+  align-content: flex-start;
+
+  .b-badges-item {
+    height: 20px;
+    padding: 0 10px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    background-color: #4ea964;
+  }
+}

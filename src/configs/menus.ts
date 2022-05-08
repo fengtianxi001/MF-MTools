@@ -1,9 +1,10 @@
-export type menusConfigType = {
+export type menuConfigType = {
   path: string;
   icon?: string;
   title: string;
 };
-const menusConfig: Array<menusConfigType> = [
+export type menusConfigType = Readonly<Array<menuConfigType>>
+export const menus: menusConfigType = Object.freeze([
   {
     path: "/project",
     icon: "far fa-keyboard",
@@ -14,5 +15,4 @@ const menusConfig: Array<menusConfigType> = [
     icon: "far fa-keyboard",
     title: "门户网站",
   },
-];
-export default Object.freeze(menusConfig);
+]);

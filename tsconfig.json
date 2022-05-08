@@ -19,7 +19,17 @@
 
     "types": ["webpack-env"],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "assets/*": ["src/assets/*"],
+      "components/*": ["src/components/*"],
+      "constants/*": ["src/constants/*"],
+      "controllers/*": ["src/controllers/*"],
+      "hooks/*": ["src/hooks/*"],
+      "utils/*": ["src/utils/*"],
+      "styles/*": ["src/styles/*"],
+      "views/*": ["src/views/*"],
+      "configs/*": ["src/configs/*"],
+
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },

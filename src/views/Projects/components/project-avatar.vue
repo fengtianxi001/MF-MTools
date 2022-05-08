@@ -2,7 +2,7 @@
   <div class="project-avatar" :style="style">{{ name.slice(0, 2) }}</div>
 </template>
 <script setup lang="ts">
-import { computed, defineProps, StyleValue } from "vue";
+import { computed, StyleValue } from "vue";
 import { isArray } from "lodash-es";
 const stringToColor = require('string-to-color');
 interface propsType {

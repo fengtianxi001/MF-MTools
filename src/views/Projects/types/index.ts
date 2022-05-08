@@ -18,4 +18,5 @@ export interface projectType {
   folderTree: folderTreeOptionsType[];
   isGit: boolean;
   topics: string[];
+  description: string
 }

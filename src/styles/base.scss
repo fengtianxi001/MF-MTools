@@ -1,37 +1,56 @@
+@mixin line-ellipsis($line: 2) {
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $line;
+  overflow: hidden;
+  display: -webkit-box;
+}
+%one-ellipsis {
+  @include line-ellipsis(1);
+}
+
+%two-ellipsis {
+  @include line-ellipsis(2);
+}
+
+%three-ellipsis {
+  @include line-ellipsis(3);
+}
+
 %text-ellipsis {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 // vertical-center
 %v-center {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 // horizontal-center
 %h-center {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 %vh-center {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 %transition {
-	transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 %title {
-	position: relative;
-	&::before {
-		content: '';
-		width: 4px;
-		height: 50%;
-		background-color: #0081ff;
-		position: absolute;
-		left: 0px;
-		border-radius: 4px;
-	}
+  position: relative;
+  &::before {
+    content: "";
+    width: 4px;
+    height: 50%;
+    background-color: #0081ff;
+    position: absolute;
+    left: 0px;
+    border-radius: 4px;
+  }
 }
