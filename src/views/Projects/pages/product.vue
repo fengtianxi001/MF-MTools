@@ -1,9 +1,8 @@
 <template>
   <div class="project">
     <div class="project-left">
-      <div></div>
-      <div class="project-files-panel"></div>
-      <div class="project-markdwon"></div>
+      <BFilesTree />
+      <BMarkdown src="d:\\Coding\\MF-MTools\\README.md" />
     </div>
     <div class="project-right">
       <div class="project-base">
@@ -22,6 +21,7 @@
         <li>安装依赖</li>
         <li>编辑器打开</li>
         <li>打开文件夹</li>
+        <li>打开github</li>
         <li>重新加载数据</li>
         <li>项目日报</li>
         <li>项目周报</li>
@@ -43,6 +43,8 @@
 <script setup lang="ts">
 // import { useRoute } from "vue-router";
 import BPercentChart from "components/b-percent-chart/index.vue";
+import BFilesTree from "components/b-files-tree/index.vue"
+import BMarkdown from "components/b-markdown/index.vue"
 const languages = [
   {
     key: "TypeScript",
@@ -91,13 +93,6 @@ $border: 1px solid #ccc;
       border: $border;
       background-color: #f1f3f4;
       margin-bottom: 10px;
-    }
-
-    .project-markdwon {
-      width: 100%;
-      height: 400px;
-      border: $border;
-      background-color: #f1f3f4;
     }
   }
 

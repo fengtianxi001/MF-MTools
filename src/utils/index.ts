@@ -17,6 +17,10 @@ export function formatDay(timeStamp: number, format?: string) {
   return dayjs(timeStamp).format(format)
 }
 
-export function getStringBytes(str: string) {
+export function getStringBytes(str: string): number {
   return Array.from(str).reduce((sum, char) => char.charCodeAt(0) > 255 ? sum += 2 : ++sum, 0)
+}
+
+export function readFileSync(src): string {
+  return fs.readFileSync(src).toString()
 }
