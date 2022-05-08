@@ -1,0 +1,50 @@
+@forward 'element-plus/theme-chalk/src/common/var.scss'with ($colors: ('primary': ('base': #4880ff,
+    ),
+    'success': ('base': #5cb85c,
+    ),
+    'warning': ('base': #f39f25,
+    ),
+    'danger': ('base': #ff5949,
+    ),
+    'error': ('base': #f94b30,
+    ),
+    'info': ('base': #32bce4,
+    ),
+  ),
+  $text-color: ( // 一级文字
+    'primary': #000000,
+    // 二级文字
+    'regular': #303030,
+    // 三级文字
+    'secondary': #606266,
+    'placeholder': #909399,
+    'disabled': #c0c4cc,
+  ),
+  $font-size: ( // 大标题
+    'extra-large': 20px,
+    // 标题
+    'large': 18px,
+    // 小标题
+    'medium': 16px,
+    //正文
+    'base': 14px,
+    'small': 13px,
+    // 正文辅助文字
+    'extra-small': 12px,
+  ),
+
+  $border-radius: ( // 'base': 2px,
+  ),
+  $table: ('header-bg-color': #ebeef5,
+    // 'bg-color': #ebeef5,
+    // 'tr-bg-color': #ebeef5,
+
+  ),
+  $messagebox: ('title-color': var(--el-text-color-regular),
+    'content-color': var(--el-text-color-secondary),
+  ),
+  $dialog: ('border-radius': 4px,
+  ));
+$mask-color: #000;
+$color-primary: #4880ff;
+$divider-color: #ebeef5;

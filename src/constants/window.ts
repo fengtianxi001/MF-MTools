@@ -1,0 +1,16 @@
+export const WINDOW_CONFIG = {
+    id: '',
+    title: '',
+    width: '',
+    height: '',
+    minWidth: '',
+    minHeight: '',
+    route: '',
+    resizable: true,
+    maximize: false,
+    backgroundColor: '#eee',
+    isMultiWindow: false,
+    isMainWin: false,
+    parentId: '', 
+    modal: false, 
+}
