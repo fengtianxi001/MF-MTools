@@ -1,16 +1,14 @@
 <template>
   <div class="projects">
-    <div class="projects-search">
-      <input type="text">
-    </div>
+    <BSearch :configs="searchConfig" @submit="onSearchSubmit" />
     <div class="projects-content">
       <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
     </div>
-
   </div>
 </template>
 <script setup lang="ts">
 import ProjectCard from "../components/project-card.vue";
+import BSearch from "components/b-search/index.vue"
 // import { useDragFile } from "@/hooks/useDragFile";
 import { reactive } from "vue";
 import { projectType } from "@/views/Projects/types/index";
@@ -46,6 +44,36 @@ const cacheProjects: projectType[] = [{
   description: "一个狗都不用的前端开发工具"
 }]
 const projects = reactive(cacheProjects)
+
+const searchConfig = [
+  {
+    name: 'name',
+    component: 'Input',
+    label: '项目名称:',
+    props: {
+      placeholder: '请输入关键字',
+    },
+  },
+  {
+    name: 'key',
+    component: 'Select',
+    label: '项目分类:',
+    props: {
+      options: [
+        {
+          label: 'laebl',
+          value: 'value',
+        },
+      ],
+      placeholder: 'placeholder',
+    },
+  },
+
+]
+
+const onSearchSubmit = (res) => {
+  console.log(res)
+}
 </script>
 <style lang="scss" scoped>
 .projects-search {

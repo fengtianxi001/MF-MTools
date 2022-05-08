@@ -12,8 +12,17 @@ declare module '@vue/runtime-core' {
     BMarkdown: typeof import('./src/components/b-markdown/index.vue')['default']
     BPageTitle: typeof import('./src/components/b-page-title/index.vue')['default']
     BPercentChart: typeof import('./src/components/b-percent-chart/index.vue')['default']
+    BSearch: typeof import('./src/components/b-search/index.vue')['default']
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElForm: typeof import('element-plus/es')['ElForm']
+    ElFormItem: typeof import('element-plus/es')['ElFormItem']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    ElOption: typeof import('element-plus/es')['ElOption']
+    ElSelect: typeof import('element-plus/es')['ElSelect']
+    Input: typeof import('./src/components/b-search/components/Input.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Select: typeof import('./src/components/b-search/components/Select.vue')['default']
   }
 }
 
