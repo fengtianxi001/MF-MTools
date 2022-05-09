@@ -1,11 +1,10 @@
 <template>
   <ul class="b-files-tree">
-    <li class="b-files-tree-item">
-      ...
-    </li>
-    <li v-for="item in files" :key="item.path" class="b-files-tree-item">
-      <div>
-        <i class='fas fa-folder' style='color:#54aeff'></i>
+    <li class="b-files-tree-item" v-show="baseURL !== currentURL" @click="onPrev">...</li>
+    <li v-for="item in files" :key="item.path" class="b-files-tree-item" @click="onRowHandle(item)">
+      <div >
+        <i v-if="item.isLeaf" class='far fa-file file' style='color:#57606a'></i>
+        <i v-else class="fas fa-folder folder" style="color:#54aeff" />
         <span>{{ item.label }}</span>
       </div>
       <span>2022-12-12 12:12:12</span>
@@ -13,123 +12,39 @@
   </ul>
 </template>
 <script setup lang="ts">
-const files = [
-  {
-    "path": "d:\\Coding\\device-web\\.editorconfig",
-    "label": ".editorconfig",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\.env.development",
-    "label": ".env.development",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\.env.production",
-    "label": ".env.production",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\.env.staging",
-    "label": ".env.staging",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\.eslintignore",
-    "label": ".eslintignore",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\.eslintrc.js",
-    "label": ".eslintrc.js",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\.gitignore",
-    "label": ".gitignore",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\.travis.yml",
-    "label": ".travis.yml",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\.vscode",
-    "label": ".vscode"
-  },
-  {
-    "path": "d:\\Coding\\device-web\\babel.config.js",
-    "label": "babel.config.js",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\build",
-    "label": "build"
-  },
-  {
-    "path": "d:\\Coding\\device-web\\jest.config.js",
-    "label": "jest.config.js",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\jsconfig.json",
-    "label": "jsconfig.json",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\LICENSE",
-    "label": "LICENSE",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\package-lock.json",
-    "label": "package-lock.json",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\package.json",
-    "label": "package.json",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\permission.js",
-    "label": "permission.js",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\postcss.config.js",
-    "label": "postcss.config.js",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\public",
-    "label": "public"
-  },
-  {
-    "path": "d:\\Coding\\device-web\\README.md",
-    "label": "README.md",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\settings.js",
-    "label": "settings.js",
-    "isLeaf": true
-  },
-  {
-    "path": "d:\\Coding\\device-web\\src",
-    "label": "src"
-  },
-  {
-    "path": "d:\\Coding\\device-web\\tests",
-    "label": "tests"
-  },
-  {
-    "path": "d:\\Coding\\device-web\\vue.config.js",
-    "label": "vue.config.js",
-    "isLeaf": true
+import { traverseFolder, getPrevDir } from "utils/index";
+import { onMounted, ref, watch } from "vue";
+const props = defineProps<{
+  baseURL: string
+}>()
+const files = ref([])
+const currentURL = ref(props.baseURL)
+const onFetchFileTree = (src: string) => {
+  const tree = traverseFolder(src, {
+    deep: true,
+    ignore: ["node_modules"],
+    isFlat: false
+  })
+  console.log(tree)
+  files.value = tree
+}
+const onRowHandle = (item) => {
+  if (item.isLeaf) {
+    //todo
+  } else {
+    currentURL.value = item.path
   }
-]
+
+}
+const onPrev = () => {
+  currentURL.value = getPrevDir(currentURL.value)
+}
+watch(currentURL, (newPath) => {
+  onFetchFileTree(newPath)
+})
+onMounted(() => {
+  onFetchFileTree(props.baseURL)
+})
 </script>
 
 <style lang="scss" scoped>
@@ -151,7 +66,7 @@ const files = [
     cursor: pointer;
     justify-content: space-between;
 
-    .fas {
+    i {
       margin-right: 6px;
       font-size: 14px;
     }

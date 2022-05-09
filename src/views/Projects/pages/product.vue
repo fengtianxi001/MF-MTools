@@ -1,21 +1,16 @@
 <template>
   <div class="project">
     <div class="project-left">
-      <BFilesTree />
-      <BMarkdown src="d:\\Coding\\MF-MTools\\README.md" />
+      <BFilesTree :baseURL="project.path" />
+      <BMarkdown :src="markdownURL" />
     </div>
     <div class="project-right">
       <div class="project-base">
-        <div class="project-base-name">MTools</div>
-        <div class="project-base-createTime">2015-08-12 13:00:44</div>
+        <div class="project-base-name">{{ project.name }}</div>
+        <div class="project-base-createTime">{{ project.lastModified }}</div>
       </div>
       <ul class="project-topics">
-        <li>Vue</li>
-        <li>Node</li>
-        <li>Three</li>
-        <li>Electron</li>
-        <li>Scss</li>
-        <li>Element</li>
+        <li v-for="topic in project.topics" :key="topic">{{ topic }}</li>
       </ul>
       <ul class="project-operate">
         <li>安装依赖</li>
@@ -29,9 +24,7 @@
         <li>删除项目</li>
       </ul>
       <ul class="project-operate">
-        <li>run dev</li>
-        <li>run build</li>
-        <li>run preview</li>
+        <li v-for="item in scripts" :key="item">run {{ item }}</li>
       </ul>
       <BPercentChart :data="languages" />
       <div class="project-calendar">
@@ -41,34 +34,24 @@
   </div>
 </template>
 <script setup lang="ts">
-// import { useRoute } from "vue-router";
+import { useRoute } from "vue-router";
+import { useStore } from "vuex";
+import { getProjectLanguages, getProjectScripts } from "utils/index";
 import BPercentChart from "components/b-percent-chart/index.vue";
 import BFilesTree from "components/b-files-tree/index.vue"
 import BMarkdown from "components/b-markdown/index.vue"
-const languages = [
-  {
-    key: "TypeScript",
-    value: 60.5,
-  },
-  {
-    key: "Vue",
-    value: 30.6,
-  },
-  {
-    key: "JavaScript",
-    value: 6.5,
-  },
-  {
-    key: "Scss",
-    value: 1.7,
-  },
-  {
-    key: "Html",
-    value: 0.7,
-  },
-];
-// const route = useRoute();
-// console.log();
+const path = require("path")
+const store = useStore();
+const route = useRoute();
+
+
+const project = store.getters.projects.find(item => {
+  return item.id == route.params.id
+})
+const languages = getProjectLanguages(project.path)
+const scripts = getProjectScripts(project.path)
+const markdownURL = path.join(project.path, "README.md")
+
 </script>
 
 <style lang="scss" scoped>
@@ -139,7 +122,7 @@ $border: 1px solid #ccc;
         height: 24px;
         background-color: #f1f3f4;
         border: $border;
-        font-size: 12px;
+        font-size: 10px;
         @extend %vh-center;
       }
     }

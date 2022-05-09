@@ -1,11 +1,15 @@
 import { onMounted, onBeforeUnmount, ref } from "vue";
 import { useDragFilePropsType } from "./types";
 import { isFunction } from "lodash-es";
-export function useDragFile({ formatter, success }: useDragFilePropsType) {
+const path = require("path")
+export function useDragFile({ formatter, success, accept }: useDragFilePropsType) {
   const files = ref();
   const dropListener = async (e: DragEvent) => {
     e.preventDefault();
-    const fileList = Array.from(e.dataTransfer.files);
+    let fileList = Array.from(e.dataTransfer.files);
+    if (accept) {
+      fileList = fileList.filter(item => accept.includes(path.parse(item.path).ext))
+    }
     files.value = isFunction(formatter) ? await formatter(fileList) : fileList;
     isFunction(success) && (await success(files.value));
   };

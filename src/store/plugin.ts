@@ -1,8 +1,8 @@
-import Database from "@/controllers/database/index";
-new Database()
+import { database } from "@/controllers/database/index";
 export default (store) => {
-  store.replaceState({});
+  store.replaceState(database.fetch());
   store.subscribe((mutation, state) => {
-    console.log("state", state);
-  });
+    console.log("store",state);
+    database.update(state)
+  })
 };

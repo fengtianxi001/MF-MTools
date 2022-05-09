@@ -5,7 +5,7 @@
       <div class="project-card-info">
         <div class="project-card-name">{{ project.name }}</div>
         <div class="project-card-description">{{ project.description }}</div>
-        <div class="project-card-createtime" v-if="isShowCreateTime">{{ formatDay(project.createTime, "YYYY-MM-DD") }}
+        <div class="project-card-createtime" v-if="isShowCreateTime">{{ formatDay(project.lastModified, "YYYY-MM-DD") }}
         </div>
       </div>
     </div>
@@ -20,18 +20,16 @@ import { formatDay, getStringBytes } from "@/utils/index"
 import ProjectAvatar from "./project-avatar.vue"
 import BBadges from "@/components/b-badges/index.vue"
 
-interface propsType {
+const props = defineProps<{
   project: projectType
-}
-const props = defineProps<propsType>()
+}>()
 
-// console.log(formatDay(props.project.createTime))
 const onHandle = () => {
   createWindow({
     width: 780,
     height: 800,
     title: "项目详情",
-    route: "/product/1000",
+    route: `/product/${props.project.id}`,
     resizable: false,
     maximizable: false,
     name: "project",

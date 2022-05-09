@@ -1,14 +1,24 @@
 <template>
   <div class="b-markdwon">
-    <v-md-preview :text="text" />
+    <v-md-preview :text="markdownContent" />
   </div>
 </template>
 <script setup lang="ts">
-import { readFileSync } from "utils/index";
+import { readFileSync, isFileExist } from "utils/index";
+import { onMounted, ref } from "vue";
 const props = defineProps<{
   src: string
 }>()
-const text = readFileSync(props.src)
+const onFetchMd = (src) => {
+  if (isFileExist(src)) {
+    return readFileSync(src)
+  }
+}
+const markdownContent = ref("# null")
+onMounted(() => {
+  markdownContent.value = onFetchMd(props.src)
+})
+
 </script>
 <style lang="scss" scoped>
 .b-markdwon {

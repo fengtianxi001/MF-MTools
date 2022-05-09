@@ -4,7 +4,7 @@
       <component :is="components[config.component]" v-model="result[config.name]" :config="config" />
     </template>
     <el-form-item>
-      <el-button @click="onResult">搜索</el-button>
+      <el-button type="primary" @click="onResult">搜索</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -16,7 +16,7 @@ import { configType } from "./type";
 const props = defineProps<{
   configs: configType[]
 }>()
-console.log(components)
+// console.log(components)
 const result = reactive<{ [key: string]: any }>({});
 props.configs.forEach(config => {
   result[config.name] = config.defaultValue || void 0;

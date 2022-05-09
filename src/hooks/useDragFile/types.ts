@@ -7,9 +7,10 @@ export type formatterResultType = {
   webkitRelativePath?: string;
   lastModifiedDate?: Date;
 };
-export type formatterType = (args: File[]) => formatterResultType[];
+export type formatterType = (args: File[]) => Array<formatterResultType>;
 
 export interface useDragFilePropsType {
+  accept?: Array<string>,
   formatter?: formatterType;
-  success?: (args: formatterResultType | File[]) => void;
+  success?: (args: Array<formatterResultType> | Array<File>) => void;
 }

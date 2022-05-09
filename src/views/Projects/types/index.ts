@@ -10,10 +10,10 @@ export type folderTreeOptionsType = {
 };
 
 export interface projectType {
-  id: string;
+  id: string | number;
   name: string;
   createTime: number;
-  lastModifyTime: number;
+  lastModified: number;
   languages: languageOptionType[];
   folderTree: folderTreeOptionsType[];
   isGit: boolean;

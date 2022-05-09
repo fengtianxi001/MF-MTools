@@ -40,4 +40,5 @@ class Database {
     return store;
   }
 }
-export default Database;
+export const database = new Database()
+// export default Database;
