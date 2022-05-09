@@ -2,7 +2,7 @@
   <div class="project">
     <div class="project-left">
       <b-files-tree :baseURL="project.path" />
-      <b-markdown :src="markdownURL" />
+      <b-markdown :src="project.path" />
     </div>
     <div class="project-right">
       <div class="project-base">
@@ -47,7 +47,7 @@ const project = store.getters.projects.find(item => {
 })
 const languages = getProjectLanguages(project.path)
 const scripts = getProjectScripts(project.path)
-const markdownURL = path.join(project.path, "README.md")
+// const markdownURL = path.join(project.path, "README.md")
 
 </script>
 

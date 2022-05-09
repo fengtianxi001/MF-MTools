@@ -12,9 +12,7 @@ export function useFilesTree(url: string) {
             ignore: ["node_modules"],
             isFlat: false
         })
-        setTimeout(() => {
-            loading.value = false
-        }, 500);
+        loading.value = false
 
     }
     refresh()
