@@ -28,11 +28,5 @@ const style = computed(() => {
 })
 </script>
 <style lang="scss" scoped>
-.project-avatar {
-  @extend %vh-center;
-  color: #fff;
-  font-weight: bold;
-  border: 1px solid #ccc;
-  text-shadow: #ccc 1px 0 0, #ccc 0 1px 0, #ccc -1px 0 0, #ccc 0 -1px 0;
-}
+@import "./style.scss"
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div class="project">
     <div class="project-left">
-      <BFilesTree :baseURL="project.path" />
-      <BMarkdown :src="markdownURL" />
+      <b-files-tree :baseURL="project.path" />
+      <b-markdown :src="markdownURL" />
     </div>
     <div class="project-right">
       <div class="project-base">
@@ -26,7 +26,7 @@
       <ul class="project-operate">
         <li v-for="item in scripts" :key="item">run {{ item }}</li>
       </ul>
-      <BPercentChart :data="languages" />
+      <b-percent-chart :data="languages" />
       <div class="project-calendar">
         <li v-for="item in 80" :key="item"></li>
       </div>
@@ -37,9 +37,6 @@
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { getProjectLanguages, getProjectScripts } from "utils/index";
-import BPercentChart from "components/b-percent-chart/index.vue";
-import BFilesTree from "components/b-files-tree/index.vue"
-import BMarkdown from "components/b-markdown/index.vue"
 const path = require("path")
 const store = useStore();
 const route = useRoute();
@@ -55,111 +52,5 @@ const markdownURL = path.join(project.path, "README.md")
 </script>
 
 <style lang="scss" scoped>
-$border: 1px solid #ccc;
-
-.project {
-  width: 100%;
-  padding: 10px;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-column-gap: 10px;
-
-  .project-left {
-    width: 100%;
-    height: 100%;
-    border: $border;
-    padding: 10px;
-
-    .project-files-panel {
-      width: 100%;
-      height: 300px;
-      border: $border;
-      background-color: #f1f3f4;
-      margin-bottom: 10px;
-    }
-  }
-
-  .project-right {
-    width: 100%;
-    height: 100%;
-    border: $border;
-    padding: 10px;
-
-    .project-base {
-      width: 100%;
-      border: $border;
-      padding: 4px;
-      margin-bottom: 10px;
-
-      &-name {
-        height: 40px;
-        border: $border;
-        background-color: #f1f3f4;
-        margin-bottom: 4px;
-        font-size: 24px;
-        font-weight: bold;
-        @extend %v-center;
-      }
-
-      &-createTime {
-        height: 20px;
-        border: $border;
-        background-color: #f1f3f4;
-        font-size: 12px;
-      }
-    }
-
-    .project-topics {
-      border: $border;
-      padding: 4px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-column-gap: 4px;
-      grid-row-gap: 4px;
-      margin-bottom: 10px;
-
-      li {
-        height: 24px;
-        background-color: #f1f3f4;
-        border: $border;
-        font-size: 10px;
-        @extend %vh-center;
-      }
-    }
-
-    .project-operate {
-      border: $border;
-      padding: 4px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-column-gap: 4px;
-      grid-row-gap: 4px;
-      margin-bottom: 10px;
-
-      li {
-        height: 30px;
-        background-color: #f1f3f4;
-        border: $border;
-        font-size: 13px;
-        @extend %vh-center;
-      }
-    }
-
-    .project-calendar {
-      border: $border;
-      padding: 4px;
-      display: grid;
-      grid-template-columns: repeat(10, 1fr);
-      grid-row-gap: 4px;
-      grid-column-gap: 4px;
-
-      li {
-        width: 100%;
-        height: 10px;
-        background-color: #f1f3f4;
-        border: $border;
-      }
-    }
-  }
-}
+@import "../styles/project.scss"
 </style>

@@ -6,6 +6,7 @@ import Prism from 'prismjs';
 import ElementPlus from 'element-plus'
 import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
 import VMdPreview from '@kangc/v-md-editor/lib/preview';
+import { requireComponents } from "components/install"
 import "mf-icos"
 import "mf-fonts"
 import "@/styles/global.scss"
@@ -19,9 +20,9 @@ VMdPreview.use(vuepressTheme, {
 });
 
 createApp(App)
-.use(store)
-.use(ElementPlus)
-.use(router)
-.use(VMdPreview)
-
-.mount('#app')
+  .use(store)
+  .use(ElementPlus)
+  .use(router)
+  .use(VMdPreview)
+  .use(requireComponents)
+  .mount('#app')

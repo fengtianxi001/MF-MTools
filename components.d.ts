@@ -5,6 +5,7 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    BAvatar: typeof import('./src/components/b-avatar/index.vue')['default']
     BBadges: typeof import('./src/components/b-badges/index.vue')['default']
     BFilesTree: typeof import('./src/components/b-files-tree/index.vue')['default']
     BLayout: typeof import('./src/components/b-layout/index.vue')['default']
@@ -12,6 +13,7 @@ declare module '@vue/runtime-core' {
     BMarkdown: typeof import('./src/components/b-markdown/index.vue')['default']
     BPageTitle: typeof import('./src/components/b-page-title/index.vue')['default']
     BPercentChart: typeof import('./src/components/b-percent-chart/index.vue')['default']
+    BProjectCard: typeof import('./src/components/b-project-card/index.vue')['default']
     BSearch: typeof import('./src/components/b-search/index.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElForm: typeof import('element-plus/es')['ElForm']

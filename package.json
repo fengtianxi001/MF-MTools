@@ -17,6 +17,7 @@
         "lodash-es": "^4.17.21",
         "mf-fonts": "^1.0.1",
         "mf-icos": "^1.0.3",
+        "path": "^0.12.7",
         "string-to-color": "^2.2.2",
         "ts-loader": "8.2.0",
         "unplugin-auto-import": "^0.7.1",
