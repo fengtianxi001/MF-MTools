@@ -14,7 +14,7 @@
 </template>
 <script setup lang="ts">
 import { StyleValue } from 'vue';
-const stringToColor = require('string-to-color');
+import { stringToColor } from "utils/index";
 const props = defineProps<{
   data: Array<{
     key: string,

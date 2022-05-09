@@ -1,29 +1,30 @@
 <template>
-  <div class="project-avatar" :style="style">{{ name.slice(0, 2) }}</div>
+  <div
+    class="project-avatar"
+    :style="style"
+  >
+    {{ name.slice(0, 2) }}
+  </div>
 </template>
-<script setup lang="ts">
-import { computed, StyleValue } from "vue";
-import { isArray } from "lodash-es";
-const stringToColor = require('string-to-color');
+<script lang="ts" setup>
+import { computed, StyleValue, withDefaults } from "vue";
+import { stringToColor, numberToPx } from "utils/index";
 interface propsType {
   name: string,
   size?: number | [number, number]
 }
-const props = defineProps<propsType>()
+const props = withDefaults(defineProps<propsType>(), {
+  name: "name",
+  size: 50
+})
 const style = computed(() => {
-  const color: string = stringToColor(props.name)
   let width, height;
-  if (isArray(props.size)) {
-    width = props.size[0] ?? 50
-    height = props.size[1] ?? 50
-  } else {
-    width = height = props.size ?? 50
-  }
+  [width, height] = Array.isArray(props.size) ? props.size : [props.size, props.size]
   return {
-    backgroundColor: color,
-    width: width + "px",
-    height: height + "px",
-    fontSize: (width) / 2 + "px",
+    backgroundColor: stringToColor(props.name),
+    width: numberToPx(width),
+    height: numberToPx(height),
+    fontSize: numberToPx(width / 2),
   } as StyleValue
 })
 </script>

@@ -1,16 +1,31 @@
 const fs = require("fs");
 const path = require("path");
-
 import { traverseFolderOptionsType, fileTreeType } from "./types";
 import dayjs from "dayjs";
-import "dayjs/locale/zh-cn";
-dayjs.locale("zh-cn");
+// import "dayjs/locale/zh-cn";
+// dayjs.locale("zh-cn");
+
+export function stringToColor(string: string, caseSensitive?: boolean): string {
+  string = caseSensitive ? string : string.toLowerCase()
+  let hash = 1315423911;
+  let index = string.length - 1;
+  while (index >= 0) {
+    const ch = string.charCodeAt(index);
+    hash ^= ((hash << 5) + ch + (hash >> 2));
+    index--
+  }
+  return "#" + (hash & 0x7FFFFFFF).toString(16).slice(0, 6);
+}
+
+export function numberToPx(number:number):string{
+  return number + "px"
+}
 
 export function isFile(src: string) {
   return fs.statSync(src).isFile()
 }
 
-export function isFileExist(src:string):boolean {
+export function isFileExist(src: string): boolean {
   return fs.existsSync(src)
 }
 
@@ -70,7 +85,7 @@ export function traverseFolder(src: string, options: traverseFolderOptionsType =
   ignore: [],
   deep: false,
   isFlat: false
-}): Array<fileTreeType>{
+}): Array<fileTreeType> {
   const result = [];
   const dirs = fs.readdirSync(src);
   const packItem = (path, label, isLeaf, children) => ({
@@ -144,6 +159,6 @@ export function getProjectScripts(src: string) {
   return arr;
 }
 
-export function getPrevDir(src:string):string {
+export function getPrevDir(src: string): string {
   return path.parse(src).dir
 }

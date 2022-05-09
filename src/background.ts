@@ -10,7 +10,7 @@ async function createWindow() {
   window.createWindow({
     isMainWin: true,
     name: "Mtools",
-    width: 1200,
+    width: 1340,
     height: 800,
   });
   window.createTray();

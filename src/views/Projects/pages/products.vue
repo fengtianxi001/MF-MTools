@@ -7,7 +7,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import ProjectCard from "../components/project-card.vue";
 import { useDragFile } from "hooks/useDragFile";
 import { computed, Ref } from "vue";
 import { projectType } from "views/Projects/types/index";

@@ -8,17 +8,16 @@
 </template>
 <script setup lang="ts">
 import { StyleValue, computed } from "vue";
+import { numberToPx } from "utils/index";
+import { size } from "lodash-es";
 const props = defineProps<{
   badges: Array<string | number>
   lines?: number,
 }>()
+const isEmpty = computed(() => size(props.badges) === 0)
 const style = computed(() => ({
-  height: (props.lines || 1) * 22 + "px"
+  height: numberToPx((props.lines || 1) * 22)
 })) as StyleValue
-
-const isEmpty = computed(() => {
-  return props.badges.length === 0
-})
 </script>
 <style lang="scss" scoped>
 @import "./style.scss"
