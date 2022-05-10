@@ -5,8 +5,18 @@
 </template>
 <script setup lang="ts">
 import { OPERATE_LIST } from "constants/projects";
-const onHandle = (value) => {
-  console.log(value)
+import projectControllers from "controllers/projects/index"
+import { isFunction } from "lodash-es";
+const props = defineProps<{
+  src: string
+}>()
+const onHandle = (operate) => {
+  const controller = projectControllers[operate]
+  if (isFunction(controller)) {
+    controller(props.src)
+  } else {
+    alert(`no find ${operate}`)
+  }
 }
 </script>
 

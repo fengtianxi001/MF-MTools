@@ -4,14 +4,6 @@
   </div>
 </template>
 <script setup lang="ts">
-// import { getProjectScripts } from "utils/index";
-// interface propsType {
-//   name: string
-//   lastModified: number | string
-// }
-// const props = defineProps<propsType>()
-// const scripts = getProjectScripts(props.src)
-
 </script>
 
 <style lang="scss" scoped>

@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 import { traverseFolderOptionsType, fileTreeType } from "./types";
+import { ElLoading } from 'element-plus'
 import dayjs from "dayjs";
 // import "dayjs/locale/zh-cn";
 // dayjs.locale("zh-cn");
@@ -148,17 +149,26 @@ export function getProjectLanguages(src) {
   return languagesTops
 }
 
-// export function getProjectScripts(src: string) {
-//   const jsonName = "package.json";
-//   if (path.basename(src) !== jsonName) {
-//     src = path.join(src, jsonName);
-//   }
-//   if (!fs.existsSync(src)) return [];
-//   const { scripts } = JSON.parse(fs.readFileSync(src, "utf-8"));
-//   const arr = Object.keys({ ...scripts });
-//   return arr;
-// }
-
 export function getPrevDir(src: string): string {
   return path.parse(src).dir
+}
+
+export function screenLoading() {
+  // avoid screen flickering;
+  // if loading is less .5s, should delay to close;
+  const beginTime = new Date().getTime()
+  const loading = ElLoading.service({
+    lock: true,
+    text: 'Loading',
+    background: 'rgba(0, 0, 0, 0.7)',
+  })
+  const close = () => {
+    const endTime = new Date().getTime()
+    const interval = endTime - beginTime
+    const limit = 0.5 * 1000;
+    interval < limit ? setTimeout(() => {
+      loading.close()
+    }, limit - interval) : loading.close()
+  }
+  return close
 }

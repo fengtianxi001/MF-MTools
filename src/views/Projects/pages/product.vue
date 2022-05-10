@@ -7,7 +7,7 @@
     <div class="project-right">
       <project-baseinfo :name="project.name" :lastModified="project.lastModified" />
       <project-topics :topics="project.topics" />
-      <project-operate />
+      <project-operate :src="project.path" />
       <project-scripts :src="project.path" />
       <b-percent-chart :data="languages" />
       <project-calendar />
