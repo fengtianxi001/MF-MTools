@@ -2,10 +2,14 @@
 export const OPERATE_LIST = {
     NPM_INSTALL: {
         value: "npmInstall",
-        label: "编辑器打开"
+        label: "安装依赖"
     },
     OPEN_IN_EDIT: {
         value: "openInEdit",
+        label: "编辑器打开"
+    },
+    OPEN_IN_EXPLORE:{
+        value: "openInExplore",
         label: "打开文件夹"
     },
     OPEN_IN_GITHUB: {
