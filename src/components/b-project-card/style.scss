@@ -14,9 +14,9 @@
     .project-card-info {
       flex: 1;
       height: 55px;
-      display: grid;
-      grid-row-gap: 4px;
-      grid-template-rows: 18px 1fr;
+      // display: grid;
+      // grid-row-gap: 4px;
+      // grid-template-rows: 18px 1fr;
 
       .project-card-name {
         flex-shrink: 0;
@@ -32,7 +32,9 @@
         word-break: break-all;
         @extend %two-ellipsis;
         color: #999;
-        // text-decoration: underline;
+        min-height: 17px;
+        position: relative;
+        top: -1px;
       }
 
       .project-card-createtime {

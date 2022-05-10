@@ -1,11 +1,11 @@
 <template>
   <div class="b-percent-chart">
     <ul class="b-percent-chart-bar">
-      <li v-for="{ key, value } in data" :key="key" :style="calcStyle(key, value)" />
+      <li v-for="item in data" :key="item.key" :style="barStyle(item)" />
     </ul>
     <ul class="b-percent-chart-mark">
       <li v-for="{ key, value } in data" :key="key">
-        <span :style="{ backgroundColor: stringToColor(key) }"></span>
+        <span :style="markStyle(key)" />
         <span>{{ key }}</span>
         <span>{{ value }}%</span>
       </li>
@@ -15,18 +15,23 @@
 <script setup lang="ts">
 import { StyleValue } from 'vue';
 import { stringToColor } from "utils/index";
-const props = defineProps<{
+interface propsType {
   data: Array<{
     key: string,
     value: number
   }>
-}>()
-const calcStyle = (key, value) => {
-  return {
-    backgroundColor: stringToColor(key),
-    width: value + "%",
-  } as StyleValue
 }
+defineProps<propsType>()
+
+const barStyle = ({ key, value }) => ({
+  backgroundColor: stringToColor(key),
+  width: value + "%",
+} as StyleValue)
+
+const markStyle = (key) => ({
+  backgroundColor: stringToColor(key)
+} as StyleValue)
+
 </script>
 <style lang="scss" scoped>
 @import "./style.scss"
