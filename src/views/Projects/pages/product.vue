@@ -5,39 +5,24 @@
       <b-markdown :src="project.path" />
     </div>
     <div class="project-right">
-      <div class="project-base">
-        <div class="project-base-name">{{ project.name }}</div>
-        <div class="project-base-createTime">{{ project.lastModified }}</div>
-      </div>
-      <ul class="project-topics">
-        <li v-for="topic in project.topics" :key="topic">{{ topic }}</li>
-      </ul>
-      <ul class="project-operate">
-        <li>安装依赖</li>
-        <li>编辑器打开</li>
-        <li>打开文件夹</li>
-        <li>打开github</li>
-        <li>重新加载数据</li>
-        <li>项目日报</li>
-        <li>项目周报</li>
-        <li>编辑项目</li>
-        <li>删除项目</li>
-      </ul>
-      <ul class="project-operate">
-        <li v-for="item in scripts" :key="item">run {{ item }}</li>
-      </ul>
+      <project-baseinfo :name="project.name" :lastModified="project.lastModified" />
+      <project-topics :topics="project.topics" />
+      <project-operate />
+      <project-scripts :src="project.path" />
       <b-percent-chart :data="languages" />
-      <div class="project-calendar">
-        <li v-for="item in 80" :key="item"></li>
-      </div>
+      <project-calendar />
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
-import { getProjectLanguages, getProjectScripts } from "utils/index";
-const path = require("path")
+import { getProjectLanguages } from "utils/index";
+import ProjectScripts from "../components/project-scripts.vue"
+import ProjectOperate from "../components/project-operate.vue"
+import ProjectTopics from "../components/project-topics.vue"
+import projectBaseinfo from "../components/project-baseinfo.vue"
+import projectCalendar from "../components/project-calendar.vue"
 const store = useStore();
 const route = useRoute();
 
@@ -46,9 +31,6 @@ const project = store.getters.projects.find(item => {
   return item.id == route.params.id
 })
 const languages = getProjectLanguages(project.path)
-const scripts = getProjectScripts(project.path)
-// const markdownURL = path.join(project.path, "README.md")
-
 </script>
 
 <style lang="scss" scoped>

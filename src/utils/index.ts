@@ -17,7 +17,7 @@ export function stringToColor(string: string, caseSensitive?: boolean): string {
   return "#" + (hash & 0x7FFFFFFF).toString(16).slice(0, 6);
 }
 
-export function numberToPx(number:number):string{
+export function numberToPx(number: number): string {
   return number + "px"
 }
 
@@ -148,16 +148,16 @@ export function getProjectLanguages(src) {
   return languagesTops
 }
 
-export function getProjectScripts(src: string) {
-  const jsonName = "package.json";
-  if (path.basename(src) !== jsonName) {
-    src = path.join(src, jsonName);
-  }
-  if (!fs.existsSync(src)) return [];
-  const { scripts } = JSON.parse(fs.readFileSync(src, "utf-8"));
-  const arr = Object.keys({ ...scripts });
-  return arr;
-}
+// export function getProjectScripts(src: string) {
+//   const jsonName = "package.json";
+//   if (path.basename(src) !== jsonName) {
+//     src = path.join(src, jsonName);
+//   }
+//   if (!fs.existsSync(src)) return [];
+//   const { scripts } = JSON.parse(fs.readFileSync(src, "utf-8"));
+//   const arr = Object.keys({ ...scripts });
+//   return arr;
+// }
 
 export function getPrevDir(src: string): string {
   return path.parse(src).dir
