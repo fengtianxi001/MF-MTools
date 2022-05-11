@@ -29,11 +29,11 @@ const props = defineProps<{
 
 const onHandle = () => {
   createWindow({
-    width: 780,
+    width: 1100,
     height: 800,
     title: "项目详情",
     route: `/product/${props.project.id}`,
-    resizable: false,
+    resizable: true,
     maximizable: false,
     name: "project",
   });

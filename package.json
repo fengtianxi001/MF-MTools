@@ -10,7 +10,7 @@
     "dependencies": {
         "@kangc/v-md-editor": "^2.3.15",
         "@types/lodash-es": "^4.17.6",
-        "@types/node": "^17.0.31",
+        "@types/node": "^17.0.32",
         "core-js": "^3.8.3",
         "dayjs": "^1.11.2",
         "element-plus": "^2.1.11",

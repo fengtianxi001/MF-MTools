@@ -28,8 +28,7 @@
       "utils/*": ["src/utils/*"],
       "styles/*": ["src/styles/*"],
       "views/*": ["src/views/*"],
-      "configs/*": ["src/configs/*"],
-
+      "configs/*": ["src/configs/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },

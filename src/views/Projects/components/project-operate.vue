@@ -36,6 +36,7 @@ const onHandle = (operate) => {
     border: $border;
     font-size: 13px;
     @extend %vh-center;
+    cursor: pointer;
   }
 }
 </style>

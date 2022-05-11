@@ -1,16 +1,21 @@
 <template>
   <ul class="project-scripts">
-    <li v-for="item in scripts" :key="item">run {{ item }}</li>
+    <li v-for="item in scripts" :key="item" @click="onHandle(item)">run {{ item }}</li>
   </ul>
 </template>
 <script setup lang="ts">
 import { useFetchScripts } from "hooks/useFetchScripts"
+import { runScript } from "controllers/projects/index";
 interface propsType {
   src: string
 }
 const props = defineProps<propsType>()
 const { scripts } = useFetchScripts(props.src)
-
+const onHandle = (script) => {
+  runScript(props.src, script)
+  // const win = remote.getCurrentWindow();
+  // win.setSize(400, 400, true)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -29,6 +34,7 @@ const { scripts } = useFetchScripts(props.src)
     border: $border;
     font-size: 13px;
     @extend %vh-center;
+    cursor: pointer;
   }
 }
 </style>

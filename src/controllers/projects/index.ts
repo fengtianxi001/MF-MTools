@@ -33,6 +33,13 @@ export function editProject(src) {
 export function deleteProject(src) {
     //todo
 }
+
+export function runScript(src, script) {
+    const command = `start /i/high npm run ${script}`
+    console.log(command)
+    const options = { cwd: src, detached: true }
+    return exec({ command, options, autoCloseLoading: 1000 })
+}
 export default {
     npmInstall,
     openInEdit,

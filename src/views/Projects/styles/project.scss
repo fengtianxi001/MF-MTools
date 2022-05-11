@@ -1,10 +1,11 @@
 $border: 1px solid #ccc;
 
 .project {
-  width: 100%;
+  width: 100vw;
+  height: calc(100vh - 30px);
   padding: 10px;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   grid-column-gap: 10px;
 
   .project-left {
@@ -27,9 +28,5 @@ $border: 1px solid #ccc;
     height: 100%;
     border: $border;
     padding: 10px;
-
-    
-
-    
   }
 }

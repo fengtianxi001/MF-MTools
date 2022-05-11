@@ -1,10 +1,10 @@
-const fs = require("fs");
-const path = require("path");
 import { traverseFolderOptionsType, fileTreeType } from "./types";
 import { ElLoading } from 'element-plus'
+import { projectType } from "views/Projects/types/index";
+import { isNumber } from "lodash-es";
 import dayjs from "dayjs";
-// import "dayjs/locale/zh-cn";
-// dayjs.locale("zh-cn");
+const fs = require("fs");
+const path = require("path");
 
 export function stringToColor(string: string, caseSensitive?: boolean): string {
   string = caseSensitive ? string : string.toLowerCase()
@@ -22,7 +22,7 @@ export function numberToPx(number: number): string {
   return number + "px"
 }
 
-export function isFile(src: string) {
+export function isFile(src: string): boolean {
   return fs.statSync(src).isFile()
 }
 
@@ -30,7 +30,7 @@ export function isFileExist(src: string): boolean {
   return fs.existsSync(src)
 }
 
-export function mkdirsSync(dirname) {
+export function mkdirsSync(dirname: string): boolean {
   if (fs.existsSync(dirname)) return true;
   if (mkdirsSync(path.dirname(dirname))) {
     fs.mkdirSync(dirname);
@@ -54,7 +54,7 @@ export function readFileSync(src: string): string {
   return fs.readFileSync(src).toString();
 }
 
-export function createProjectPacker(files: Array<File>) {
+export function createProjectPacker(files: Array<File>): Array<projectType> {
   return files.map((file) => {
     return {
       id: new Date().getTime(),
@@ -71,7 +71,7 @@ export function createProjectPacker(files: Array<File>) {
   });
 }
 
-export function getProjectTopics(src: string) {
+export function getProjectTopics(src: string): Array<string> {
   const jsonName = "package.json";
   if (path.basename(src) !== jsonName) {
     src = path.join(src, jsonName);
@@ -120,7 +120,7 @@ export function traverseFolder(src: string, options: traverseFolderOptionsType =
   return result;
 }
 
-export function getProjectLanguages(src) {
+export function getProjectLanguages(src): Array<{ value: number, key: string }> {
   const IGNORE = [
     "",
     "development",
@@ -153,7 +153,7 @@ export function getPrevDir(src: string): string {
   return path.parse(src).dir
 }
 
-export function screenLoading() {
+export function screenLoading(autoCloseLoading?: number): () => void {
   // avoid screen flickering;
   // if loading is less .5s, should delay to close;
   const beginTime = new Date().getTime()
@@ -162,6 +162,9 @@ export function screenLoading() {
     text: 'Loading',
     background: 'rgba(0, 0, 0, 0.7)',
   })
+  if (isNumber(autoCloseLoading)) {
+    setTimeout(loading.close, autoCloseLoading);
+  }
   const close = () => {
     const endTime = new Date().getTime()
     const interval = endTime - beginTime

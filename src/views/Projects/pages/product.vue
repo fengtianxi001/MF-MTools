@@ -2,7 +2,7 @@
   <div class="project">
     <div class="project-left">
       <b-files-tree :baseURL="project.path" />
-      <b-markdown :src="project.path" />
+      <!-- <b-markdown :src="project.path" /> -->
     </div>
     <div class="project-right">
       <project-baseinfo :name="project.name" :lastModified="project.lastModified" />
@@ -10,7 +10,7 @@
       <project-operate :src="project.path" />
       <project-scripts :src="project.path" />
       <b-percent-chart :data="languages" />
-      <project-calendar />
+      <!-- <project-calendar /> -->
     </div>
   </div>
 </template>
