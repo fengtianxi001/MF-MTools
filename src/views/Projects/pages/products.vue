@@ -2,7 +2,7 @@
   <div class="projects">
     <b-search :configs="searchConfig" @submit="onSearchSubmit" />
     <div class="projects-content">
-      <b-project-card v-for="project in projects" :key="project.id" :project="project" />
+      <b-project-card v-for="project in list" :key="project.id" :project="project" />
     </div>
   </div>
 </template>
@@ -13,6 +13,7 @@ import { projectType } from "views/Projects/types/index";
 import { useStore } from "vuex";
 import { createProjectPacker } from "utils/index";
 import { projectsSearchConfigs as searchConfig } from "../configs/index";
+import { useProjectList } from "hooks/useProjectList";
 const store = useStore();
 useDragFile({
   accept: [""],
@@ -21,9 +22,11 @@ useDragFile({
     store.commit("addProject", result);
   },
 });
-const projects: Ref<Array<projectType>> = computed(() => store.getters.projects);
+// const projects: Ref<Array<projectType>> = computed(() => store.getters.projects);
+const { list,refresh } = useProjectList()
 const onSearchSubmit = (res) => {
-  console.log(res);
+  // console.log(res);
+  refresh(res)
 };
 </script>
 <style lang="scss" scoped>
