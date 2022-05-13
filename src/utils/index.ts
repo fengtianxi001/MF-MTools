@@ -1,10 +1,12 @@
 import { traverseFolderOptionsType, fileTreeType } from "./types";
 import { ElLoading } from 'element-plus'
 import { projectType } from "views/Projects/types/index";
-import { isNumber } from "lodash-es";
+import { isFunction, isNumber } from "lodash-es";
 import dayjs from "dayjs";
 const fs = require("fs");
 const path = require("path");
+const { spawnSync } = require("child_process")
+
 
 export function stringToColor(string: string, caseSensitive?: boolean): string {
   string = caseSensitive ? string : string.toLowerCase()
@@ -38,7 +40,7 @@ export function mkdirsSync(dirname: string): boolean {
   }
 }
 
-export function formatDay(timeStamp: number, format?: string) {
+export function formatDay(timeStamp: number | string, format?: string) {
   format = format || "YYYY-MM-DD HH:mm:ss";
   return dayjs(timeStamp).format(format);
 }
@@ -174,4 +176,39 @@ export function screenLoading(autoCloseLoading?: number): () => void {
     }, limit - interval) : loading.close()
   }
   return close
+}
+
+export function tryCatch(tryback: () => void, errorback?: () => void) {
+  try {
+    isFunction(tryback) && tryback()
+  } catch (error) {
+    isFunction(errorback) && errorback(error)
+  }
+}
+
+export function getGitLogs(src: string, range?: 'day' | 'week'): Array<{
+  message: string,
+  data: string,
+  author: string
+}> {
+  const result = []
+  const data = spawnSync('git', ["log", `--pretty=format:[ "%s","%ad","%aN <%aE>"]&&&&`], { cwd: src })
+  data.stdout.toString().split("&&&&").map(item => {
+    tryCatch(() => {
+      const [message, date, author] = JSON.parse(item)
+      if (range) {
+        if (dayjs().startOf(range).isBefore(dayjs(date))) {
+          result.push({
+            message, date: formatDay(date), author
+          })
+        }
+      } else {
+        result.push({
+          message, date: formatDay(date), author
+        })
+      }
+
+    })
+  })
+  return result
 }
