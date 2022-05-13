@@ -14,12 +14,12 @@ export const OPERATE_LIST = {
     },
     OPEN_IN_GITHUB: {
         value: "openInGithub",
-        label: "打开github"
+        label: "打开git地址"
     },
-    RELOAD_DATA: {
-        value: "reloadData",
-        label: "重新加载数据"
-    },
+    // RELOAD_DATA: {
+    //     value: "reloadData",
+    //     label: "重新加载数据"
+    // },
     CREATE_DAILY_REPORT: {
         value: "createDailyReport",
         label: "项目日报"
