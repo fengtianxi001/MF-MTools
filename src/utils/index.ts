@@ -2,12 +2,10 @@ import { traverseFolderOptionsType, fileTreeType } from "./types";
 import { ElLoading } from 'element-plus'
 import { projectType } from "views/Projects/types/index";
 import { isFunction, isNumber } from "lodash-es";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process")
-
-
 export function stringToColor(string: string, caseSensitive?: boolean): string {
   string = caseSensitive ? string : string.toLowerCase()
   let hash = 1315423911;
@@ -40,9 +38,9 @@ export function mkdirsSync(dirname: string): boolean {
   }
 }
 
-export function formatDay(timeStamp: number | string, format?: string) {
+export function formatDay(time: number | string | dayjs.Dayjs, format?: string) {
   format = format || "YYYY-MM-DD HH:mm:ss";
-  return dayjs(timeStamp).format(format);
+  return dayjs(time).format(format)
 }
 
 export function getStringBytes(str: string): number {
@@ -186,28 +184,31 @@ export function tryCatch(tryback: () => void, errorback?: () => void) {
   }
 }
 
-export function getGitLogs(src: string, range?: 'day' | 'week'): Array<{
-  message: string,
-  data: string,
-  author: string
-}> {
-  const result = []
-  const data = spawnSync('git', ["log", `--pretty=format:[ "%s","%ad","%aN <%aE>"]&&&&`], { cwd: src })
-  data.stdout.toString().split("&&&&").map(item => {
-    tryCatch(() => {
-      const [message, date, author] = JSON.parse(item)
-      if (range) {
-        if (dayjs().startOf(range).isBefore(dayjs(date))) {
-          result.push({
-            message, date: formatDay(date), author
-          })
-        }
-      } else {
-        result.push({
-          message, date: formatDay(date), author
-        })
-      }
 
+export function getGitLogs(src: string, range?: 'day' | 'week') {
+  const data = spawnSync('git', ["log", "--reverse","--date=format:%Y-%m-%d %H:%M:%S", '--pretty=format:["%s","%ad","%aN"]&&&&'], { cwd: src })
+  const cache = data.stdout.toString().split("&&&&")
+  const result = {}
+  cache.forEach((item: string) => {
+    if (!item) return void 0;
+    const [message, date, author] = JSON.parse(item)
+    if (range && !dayjs().startOf(range).isBefore(dayjs(date))) return void 0;
+    const day = dayjs(date).format("YYYY-MM-DD")
+    let group = result[day]
+    let during
+    if (!group) group = result[day] = []
+    const prev = group[group.length - 1]
+    if (!prev) {
+      during = "(unknow)"
+    } else {
+      const cache = dayjs(date).diff(prev.date) / (1000 * 60 * 60)
+      during = `(${cache.toFixed(3)} h)`
+    }
+    group.push({
+      message,
+      date,
+      author,
+      during
     })
   })
   return result

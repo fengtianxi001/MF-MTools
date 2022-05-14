@@ -1,8 +1,11 @@
 import { exec } from "controllers/common/index";
-import { isFileExist, getGitLogs } from "utils/index";
+import { isFileExist, getGitLogs, formatDay, screenLoading } from "utils/index";
 import { ElMessage } from "element-plus";
 import { remote } from "electron";
+import { WriteMarkdown } from "utils/WriteMarkdown";
 const { dirname, extname, join } = require("path");
+const { remote: { dialog } } = require('electron')
+
 const fs = require("fs");
 export function npmInstall() {
     //todo
@@ -37,16 +40,53 @@ export function reloadData(src) {
     //todo
 }
 export async function createDailyReport(src) {
+    const closeLoading = screenLoading()
     const result = getGitLogs(src, "day")
-    console.log(JSON.stringify(result,null,4))
-    const desktop = remote.app.getPath("desktop")
-    
-    fs.writeFileSync(join(desktop,"/dailyReport.json"),JSON.stringify(result,null,4))
+    const md = new WriteMarkdown()
+    md.h1("日报")
+    Object.keys(result).forEach(key => {
+        md.h2(key)
+        const items = result[key]
+        items.forEach(({ message, author, during, date }) => {
+            md.option(`${formatDay(date, "HH:mm")}, ${message}, ${author}, ${during}`)
+        })
+    })
+    dialog.showSaveDialog({
+        title: '保存周报',
+        buttonLabel: '保存',
+        defaultPath: join(remote.app.getPath("desktop"), "/DailyReport.md"),
+        filters: [{ name: 'markdown', extensions: ['md'] }]
+    }).then(({ canceled, filePath }) => {
+        if (!canceled) {
+            fs.writeFileSync(filePath, md.content)
+        }
+        closeLoading()
+    })
 }
 export function createWeeklyReport(src) {
+    const closeLoading = screenLoading()
     const result = getGitLogs(src, "week")
-    const desktop = remote.app.getPath("desktop")
-    fs.writeFileSync(join(desktop,"/weeklyReport.json"),JSON.stringify(result,null,4))
+    const md = new WriteMarkdown()
+    md.h1("周报")
+    Object.keys(result).forEach(key => {
+        md.h2(key)
+        const items = result[key]
+        items.forEach(({ message, author, during, date }) => {
+            md.option(`${formatDay(date, "HH:mm")}, ${message}, ${author}, ${during}`)
+        })
+    })
+    dialog.showSaveDialog({
+        title: '保存周报',
+        buttonLabel: '保存',
+        defaultPath: join(remote.app.getPath("desktop"), "/WeeklyReport.md"),
+        filters: [{ name: 'markdown', extensions: ['md'] }]
+    }).then(({ canceled, filePath }) => {
+        if (!canceled) {
+            fs.writeFileSync(filePath, md.content)
+        }
+        closeLoading()
+    })
+
 }
 export function editProject(src) {
     //todo
@@ -54,7 +94,6 @@ export function editProject(src) {
 export function deleteProject(src) {
     //todo
 }
-
 export function runScript(src, script) {
     const command = `start /i/high npm run ${script}`;
     console.log(command);
