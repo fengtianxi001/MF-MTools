@@ -29,7 +29,6 @@ export function exec(configs: processOptionsType) {
             resolve(result)
             isFunction(onClose) && onClose(data)
             ls.kill()
-            console.log(ls.killed)
         })
         ls.on('error', (error) => {
             console.log(error)
@@ -37,7 +36,6 @@ export function exec(configs: processOptionsType) {
             isFunction(onError) && onError(error)
             reject()
             ls.kill()
-            console.log(ls.killed)
         })
     })
     return promise
@@ -78,7 +76,6 @@ export function spawn(configs: processOptionsType) {
             isFunction(onError) && onError(error)
             reject()
             ls.kill()
-            console.log(ls.killed)
         })
     })
     return promise

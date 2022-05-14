@@ -1,7 +1,6 @@
 import { createStore } from "vuex";
 import plugin from "./plugin";
 import { projects } from "./projects";
-console.log("projects", projects)
 //应为数据要和本地json同步,所以没用module模式
 
 export default createStore({

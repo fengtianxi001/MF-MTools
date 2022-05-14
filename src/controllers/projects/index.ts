@@ -5,7 +5,6 @@ import { remote } from "electron";
 import { WriteMarkdown } from "utils/WriteMarkdown";
 const { dirname, extname, join } = require("path");
 const { remote: { dialog } } = require('electron')
-
 const fs = require("fs");
 export function npmInstall() {
     //todo
@@ -96,7 +95,6 @@ export function deleteProject(src) {
 }
 export function runScript(src, script) {
     const command = `start /i/high npm run ${script}`;
-    console.log(command);
     const options = { cwd: src, detached: true };
     return exec({ command, options, autoCloseLoading: 1000 });
 }

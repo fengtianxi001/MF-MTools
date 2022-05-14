@@ -53,11 +53,8 @@ export class Window {
     const options = this.createWindowOptions(config);
     if(!options) return false
     const { name, isMainWin, route, title } = options;
-    console.log(options.title)
     let newWindow = new BrowserWindow(options);
     newWindow.setTitle(title||"123");
-    console.log("newWindow", newWindow);
-
     newWindow.webContents.openDevTools();
     if (!name) {
       throw new Error("创建的名字是必须的");
