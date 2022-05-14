@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, globalShortcut } from "electron";
 import { Window } from "./controllers/window/index.js";
 const gotTheLock = app.requestSingleInstanceLock()
 let mainWindow;
 const isDevelopment = process.env.NODE_ENV !== "production";
-async function createWindow() {
+function createWindow() {
   const window = new Window();
-  window.createWindow({
+  const newWindow = window.createWindow({
     isMainWin: true,
     name: "Mtools",
     width: 1340,
@@ -14,7 +14,7 @@ async function createWindow() {
   });
   window.createTray();
   window.listen();
-  return createWindow
+  return newWindow
 }
 
 app.on("window-all-closed", () => {
@@ -27,7 +27,6 @@ if (!gotTheLock) {
   app.quit()
 } else {
   app.on('second-instance', () => {
-    // 当运行第二个实例时,将会聚焦到myWindow这个窗口
     if (mainWindow) {
       if (mainWindow.isMinimized()) mainWindow.restore()
       mainWindow.focus()
@@ -35,6 +34,10 @@ if (!gotTheLock) {
   })
   app.on('ready', () => {
     mainWindow = createWindow()
+    console.log("mainWindow",mainWindow)
+    globalShortcut.register('Ctrl+Shift+b', function(){
+      mainWindow.webContents.openDevTools();
+    });
   })
 }
 
@@ -42,9 +45,6 @@ app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) createWindow();
 });
 
-// app.on("ready", async () => {
-//   createWindow();
-// });
 if (isDevelopment) {
   if (process.platform === "win32") {
     process.on("message", (data) => {
@@ -58,3 +58,5 @@ if (isDevelopment) {
     });
   }
 }
+
+

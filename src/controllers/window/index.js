@@ -45,16 +45,14 @@ export class Window {
     if (parentName && parentWindow) {
       options.parent = parentWindow;
     }
-    // console.log("options",options)
     return options;
   }
-
   createWindow(config) {
     const options = this.createWindowOptions(config);
-    if(!options) return false
+    if (!options) return false;
     const { name, isMainWin, route, title } = options;
     let newWindow = new BrowserWindow(options);
-    newWindow.setTitle(title||"123");
+    newWindow.setTitle(title || "123");
     newWindow.webContents.openDevTools();
     if (!name) {
       throw new Error("创建的名字是必须的");
@@ -87,6 +85,7 @@ export class Window {
       setTimeout(() => newWindow.setEnabled(true), 100);
       return true;
     });
+    return newWindow;
   }
   closeAllWindows() {
     this.windowMap.forEach((id) => {
