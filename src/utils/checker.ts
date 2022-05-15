@@ -42,7 +42,7 @@ export function isString(value: unknown): boolean {
 }
 
 export function isPath(value: string): boolean {
-  return new RegExp("^[A-z]:\\\\(.+?\\\\)*$").test(value);
+  return new RegExp("^[A-z]:\\\\(.+?\\\\)*").test(value);
 }
 
 export function isFile(value: string): boolean {

@@ -1,12 +1,9 @@
 import { exec } from "controllers/common/index";
-import { isFileExist, getGitLogs, formatDay, screenLoading } from "utils/index";
+import { screenLoading } from "utils/index";
 import { ElMessage } from "element-plus";
-import { remote } from "electron";
-// import { WriteMarkdown } from "@/utils/markdown";
-
-import { gitLog, gitLog2Markdown } from "utils/git"
+import { gitLog, gitLog2Markdown, gitConfig } from "utils/git"
 const { dirname, extname, join } = require("path");
-const { remote: { dialog } } = require('electron')
+const { remote } = require('electron')
 const fs = require("fs");
 export function npmInstall() {
     //todo
@@ -23,16 +20,13 @@ export function openInExplore(src: string) {
         command: `explorer "${folderUrl}"`,
     });
 }
-export function openInGithub(src) {
-    const url = join(src, ".git", "config");
-    if (!isFileExist(url)) return ElMessage.error("该项目未被git托管");
-    const config = fs.readFileSync(url).toString();
-    const target = config.match(/((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+/)[0];
+export function openInGithub(src:string) {
+    const config = gitConfig(src)
+    const target = config.match(/((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+/);
     if (target) {
         return exec({
-            command: `explorer "${target}"`,
+            command: `explorer "${target[0]}"`,
         });
-        // shell.openExternal(target)
     } else {
         ElMessage.error("找不到这个项目的git地址啊");
     }
@@ -44,7 +38,7 @@ export async function createDailyReport(src) {
     const closeLoading = screenLoading()
     const gitlog = gitLog(src, "day")
     const conetnt = gitLog2Markdown(gitlog, "日报")
-    dialog.showSaveDialog({
+    remote.dialog.showSaveDialog({
         title: '保存周报',
         buttonLabel: '保存',
         defaultPath: join(remote.app.getPath("desktop"), "/DailyReport.md"),
@@ -58,8 +52,7 @@ export function createWeeklyReport(src) {
     const closeLoading = screenLoading()
     const gitlog = gitLog(src, "week")
     const conetnt = gitLog2Markdown(gitlog, "周报")
-    console.log(conetnt)
-    dialog.showSaveDialog({
+    remote.dialog.showSaveDialog({
         title: '保存周报',
         buttonLabel: '保存',
         defaultPath: join(remote.app.getPath("desktop"), "/WeeklyReport.md"),

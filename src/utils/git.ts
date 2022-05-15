@@ -1,7 +1,12 @@
 import { forEachExcludeEmpty, lastItem } from "./esApi";
+import { isGited } from "./checker";
 import { dayDifference, dayFomart, isDayInRange } from "./day";
 import { Markdown } from "./markdown";
-const { spawnSync } = require("child_process")
+import { ElMessage } from "element-plus";
+import { readFile } from "./fileSystem";
+const path = require("path");
+const { spawnSync } = require("child_process");
+
 
 type gitLogType = {
     message: string,
@@ -42,4 +47,14 @@ export function gitLog2Markdown(content: Record<string, Array<gitLogType>>, titl
         })
     })
     return md.content
+}
+
+export function gitConfig(value: string) {
+    if (!isGited(value)) {
+        ElMessage.error("该项目未被git托管")
+        return ""
+    }
+    const srcCache = path.parse(value)["base"] === ".git" ? value : path.join(value, ".git");
+    const src = path.join(srcCache, "config")
+    return readFile(src)
 }
