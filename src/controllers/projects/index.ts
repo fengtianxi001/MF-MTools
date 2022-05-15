@@ -2,7 +2,9 @@ import { exec } from "controllers/common/index";
 import { isFileExist, getGitLogs, formatDay, screenLoading } from "utils/index";
 import { ElMessage } from "element-plus";
 import { remote } from "electron";
-import { WriteMarkdown } from "utils/WriteMarkdown";
+// import { WriteMarkdown } from "@/utils/markdown";
+
+import { gitLog, gitLog2Markdown } from "utils/git"
 const { dirname, extname, join } = require("path");
 const { remote: { dialog } } = require('electron')
 const fs = require("fs");
@@ -40,52 +42,32 @@ export function reloadData(src) {
 }
 export async function createDailyReport(src) {
     const closeLoading = screenLoading()
-    const result = getGitLogs(src, "day")
-    const md = new WriteMarkdown()
-    md.h1("日报")
-    Object.keys(result).forEach(key => {
-        md.h2(key)
-        const items = result[key]
-        items.forEach(({ message, author, during, date }) => {
-            md.option(`${formatDay(date, "HH:mm")}, ${message}, ${author}, ${during}`)
-        })
-    })
+    const gitlog = gitLog(src, "day")
+    const conetnt = gitLog2Markdown(gitlog, "日报")
     dialog.showSaveDialog({
         title: '保存周报',
         buttonLabel: '保存',
         defaultPath: join(remote.app.getPath("desktop"), "/DailyReport.md"),
         filters: [{ name: 'markdown', extensions: ['md'] }]
     }).then(({ canceled, filePath }) => {
-        if (!canceled) {
-            fs.writeFileSync(filePath, md.content)
-        }
+        !canceled && fs.writeFileSync(filePath, conetnt)
         closeLoading()
     })
 }
 export function createWeeklyReport(src) {
     const closeLoading = screenLoading()
-    const result = getGitLogs(src, "week")
-    const md = new WriteMarkdown()
-    md.h1("周报")
-    Object.keys(result).forEach(key => {
-        md.h2(key)
-        const items = result[key]
-        items.forEach(({ message, author, during, date }) => {
-            md.option(`${formatDay(date, "HH:mm")}, ${message}, ${author}, ${during}`)
-        })
-    })
+    const gitlog = gitLog(src, "week")
+    const conetnt = gitLog2Markdown(gitlog, "周报")
+    console.log(conetnt)
     dialog.showSaveDialog({
         title: '保存周报',
         buttonLabel: '保存',
         defaultPath: join(remote.app.getPath("desktop"), "/WeeklyReport.md"),
         filters: [{ name: 'markdown', extensions: ['md'] }]
     }).then(({ canceled, filePath }) => {
-        if (!canceled) {
-            fs.writeFileSync(filePath, md.content)
-        }
+        !canceled && fs.writeFileSync(filePath, conetnt)
         closeLoading()
     })
-
 }
 export function editProject(src) {
     //todo

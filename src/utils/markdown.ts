@@ -1,7 +1,8 @@
-export class WriteMarkdown {
+export class Markdown {
     content: string;
-    constructor() {
+    constructor(title?: string) {
         this.content = ""
+        if(title) this.h1(title)
     }
     newline() {
         this.content += " \n "
